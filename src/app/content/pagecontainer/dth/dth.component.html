@@ -1,0 +1,206 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-4">
+              <div class="form-outter-sec">
+                 <div class="container">
+                    <h3>DTH Recharge</h3>
+                    
+                    <form [formGroup]="RechargeForm">
+
+                       <div class="form-group row">
+                        <div class="col-md-12">
+                           <div class="form-group  cus-form-check-inline">
+                              <label>Operator</label>
+                              <select2 [data]="OperatorData" class="form-control" [value]="operator" (valueChanged)="Operatorchanged($event)" dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>
+                              <span class="errorMsg" *ngIf="operator==0 && IsRechargeSubmitted">Select Operator</span>
+                           </div>
+                        </div>
+                          <div class="col-md-12">
+                              <div class="form-group cus-form-check-inline">
+                                 <!-- <label>Mobile Number</label> -->
+                                 
+                                 <input type="phone" [(ngModel)]="mobile" formControlName="mobile" [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}"  class="form-control cus-form-control"  placeholder="{{MobileplaceHolder}}" (keyup)="GetDTHPlans()">
+                                 <span class="accountRemark">{{AccountRemark}}</span>
+                                 <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
+                                       <span class="errorMsg" >{{spnMobile}}</span>
+                                     
+                                     </div>
+                              </div>
+                           </div>
+                          <div class="col-md-12">
+                             <div class="form-group cus-form-check-inline">
+                                <input type="text" class="form-control cus-form-control" placeholder="Amount" [(ngModel)]="amount" formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}" >
+                                <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
+                                 <span class="errorMsg">{{spnAmount}}</span>
+                              
+                                 
+                               </div>
+                                <a (click)="dthInfo()" class="Browse-plan">  Browse Plans <br>of all operators</a> 
+                                <a (click)="dthSimplePlanInfo()" class="Customer-Detail">  Customer<br>Detail</a> 
+                               
+                                
+                             </div>
+                             
+                             
+                          </div>
+                          <div class="col-md-12">
+                           <aditya-pageloader *ngIf="CustInfoLoader"></aditya-pageloader>
+                          </div>
+                          <div class="col-md-12" *ngIf="CustInfoLoaded" >
+                                 <table class="table tblCustInfo">
+                                     <tbody>
+                                        <tr><td class="tblheader">Customer Name</td>:<td>{{CustInfo.customerName}}</td></tr>
+                                        <tr><td class="tblheader">Monthly Recharge</td>:<td>&#x20B9; {{CustInfo.monthlyRecharge}}</td></tr>
+                                        <tr><td class="tblheader">Balance</td>:<td>&#x20B9;{{CustInfo.balance}}</td></tr>
+                                        <tr><td class="tblheader"></td><td><input type="button" class="btnMore" value="More.." (click)="GetMoreCustDetails()"></td></tr>
+                                     </tbody>
+
+                                 </table>
+                                 <table class="table tblCustInfo" id="CustMore" *ngIf="IsCustMore">
+                                       <tbody>
+                                       <tr><td class="tblheader">Registered Mobile No.</td>:<td>{{CustInfo.rmn}}</td></tr>
+                                        <tr><td class="tblheader">Plan Name</td>:<td>{{CustInfo.planname}}</td></tr>
+                                        <tr><td class="tblheader">Last Recharge Amount</td>:<td>&#x20B9;{{CustInfo.lastrechargeamount}}</td></tr>
+                                        <tr><td class="tblheader">Last Recharge Date</td>:<td>{{CustInfo.lastrechargedate}}</td></tr>
+                                        <tr><td class="tblheader">Next Recharge Date</td>:<td>{{CustInfo.nextRechargeDate}}</td></tr>
+                                       </tbody>
+                                 </table>
+                          </div>
+                        
+                          <div class="col-md-12">
+                             <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Recharge</button>
+                             
+                          </div>
+                    
+                         
+                       </div>
+                    </form>
+                 </div>
+              </div>
+            
+           </div>
+           <div class="col-md-8">
+            <aditya-pageloader *ngIf="DTHInfoLoader"></aditya-pageloader>
+              <div class="form-outter-sec" *ngIf="IsbannerShow">
+                 <div class="slider">
+                  <ngx-slick-carousel class="carousel" 
+                  #slickModal="slick-carousel" 
+                  [config]="slideConfig" 
+                 
+                  >
+  <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+        <img src="{{ slide.resourceUrl }}" alt="" width="100%">
+  </div>
+</ngx-slick-carousel>
+<div></div>
+</div>
+                 <!-- <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                       <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+                    </li>
+                 </ul>
+                 
+                 <div class="tab-content">
+                    <div class="tab-pane container active" id="home">
+                       <div class="outter-promo-sec">
+                          <ul>
+                             <li>
+                                <h4>RECHARGEFIRST125</h4>
+                                <span class="promocode-detail">
+                                <span><a href="#">View detail</a></span>
+                                </span>
+                                <p>
+                                   <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                </p>
+                             </li>
+                             <li>
+                                <h4>RECHARGEFIRST125</h4>
+                                <span class="promocode-detail">
+                                <span><a href="#">View detail</a></span>
+                                </span>
+                                <p>
+                                   <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                </p>
+                             </li>
+                             <li>
+                                <h4>RECHARGEFIRST125</h4>
+                                <span class="promocode-detail">
+                                <span><a href="#">View detail</a></span>
+                                </span>
+                                <p>
+                                   <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                </p>
+                             </li>
+                             <li>
+                                <h4>RECHARGEFIRST125</h4>
+                                <span class="promocode-detail">
+                                <span><a href="#">View detail</a></span>
+                                </span>
+                                <p>
+                                   <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                </p>
+                             </li>
+                             <li>
+                                <h4>RECHARGEFIRST125</h4>
+                                <span class="promocode-detail">
+                                <span><a href="#">View detail</a></span>
+                                </span>
+                                <p>
+                                   <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                </p>
+                             </li>
+                          </ul>
+                       </div>
+                    </div>
+                    <div class="tab-pane container fade" id="menu1">...</div>
+                    <div class="tab-pane container fade" id="menu2">...</div>
+                 </div> -->
+              </div>
+          
+              <div *ngIf="!IsbannerShow" class="form-outter-sec tab-section form-outter-sec-info" >
+               <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                     <a class="nav-link">
+                         Recharge Offers:
+                     </a>
+                  </li>
+                  <li>
+                 
+                  </li>
+               </ul>
+                <div class="tblROffer">
+                  <table class="table table-hover table-striped" *ngIf="DthInfoLoaded">
+                     <thead>
+                        <tr>
+                           <td>Operator</td>
+                           <td>Description</td>
+                           <td>Recharge Type</td>
+                           <td>Recharge Validity</td>
+                           <td>Amount</td>
+                        </tr>
+                      
+                     </thead>
+                       <tbody>
+                          <tr *ngFor="let rOffer of DthInfo.response;let i=index">
+                             <td>{{rOffer.opName}}</td>
+                             <td [innerHTML]="rOffer.details"></td>
+                             <td>{{rOffer.rechargeType}}</td>
+                             <td>{{rOffer.rechargeValidity}}</td>
+                             <td><div class="button" (click)="onamountClick(rOffer.rechargeAmount)">&#x20B9; {{rOffer.rechargeAmount}}</div></td>
+                          </tr>
+                       </tbody>
+                      </table>
+                </div>
+               
+            </div>
+           </div>
+        </div>
+     </div>
+    </div>

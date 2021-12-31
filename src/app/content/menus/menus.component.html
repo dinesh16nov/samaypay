@@ -1,0 +1,39 @@
+
+<div class="tab-background d-sm-block">
+  <div class="container-fluid">
+     <ul class="nav  " role="tablist" *ngIf="IsMobile==false">
+       <div class="cus-nav">
+        <li class="nav-item cus-nav-item" [id]="'menu-'+ m.serviceID" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngFor="let m of menus.assignedOpTypes|slice:0:9; let i=index">
+          <a class="nav-link"  (click)="getRouteName(m.serviceID)">
+            <img src="../../../assets/img/icon/{{m.serviceID}}.png" class="icon-img"> {{m.name}}</a>
+          </li>
+        </div>
+        <li *ngIf="menus.assignedOpTypes.length>=9" class="nav-item" dropdown style="position: relative;">
+          <a class="nav-link cus-nav-link dropdown-toggle"  dropdownToggle  aria-controls="button-basic"><img src="../../../assets/img/icon-old/dot.png" class="icon-img" role="menu"> More</a>           
+           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+           role="menu" aria-labelledby="button-basic">         
+         <li role="menuitem" *ngFor="let m of dropmenu; let i=index" [id]="'menu-'+ m.serviceID">
+          <a class="dropdown-item" routerLinkActive="active" (click)="getRouteName(m.serviceID)" style="cursor: pointer;">
+           <img src="../../../assets/img/icon-black/{{m.serviceID}}.png" class="icon-img1">
+           <span style="color: black;padding: 10px 0 0 0;display: block;">{{m.name}}</span> 
+         </a>
+        </li>
+       </ul>
+        </li> 
+     </ul>
+  </div>
+</div>
+<div class="mob-tab-background d-none" *ngIf="IsMobile==true">
+    <div class="container-fluid">
+       <ul class="nav mob-nav " role="tablist" *ngIf="isMenuLoaded">
+         <div class="mob-cus-nav cus-nav">
+          <li class="nav-item mob-nav-item cus-nav-item" [id]="'menu-'+ m.serviceID" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngFor="let m of menus.assignedOpTypes; let i=index">
+            <a class="nav-link"  (click)="getRouteName(m.serviceID)">
+              <img src="../../../assets/img/icon/{{m.serviceID}}.png" class="mob-icon-img"> {{m.name}}</a>
+            </li>
+          </div>
+       </ul>
+       <!-- Tab panes -->
+    </div>
+  </div>
+  

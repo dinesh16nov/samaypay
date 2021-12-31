@@ -1,0 +1,10 @@
+.slide img{
+    height: 490px;
+}
+
+@media (max-width: 479px)
+         {
+.slide img{
+    height: auto;
+}
+}

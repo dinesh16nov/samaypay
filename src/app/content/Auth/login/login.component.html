@@ -1,0 +1,67 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+           <div class="col-md-12">
+              <div class="form-outter-sec row">
+                 <div class="container col-md-4">
+                    <h3><i class="fa fa-user" aria-hidden="true"></i> Login</h3>
+                    <form [formGroup]="LoginForm">
+
+                       <div class="form-group row">
+                         
+                          <div class="col-md-12">
+                             <div class="form-group  cus-form-check-inline">
+                                <!-- <label>Login ID</label> -->
+                                
+                                <input  class="form-control cus-form-control" maxlength="10" formControlName="UserID" id="loginMobile" [ngClass]="{'is-invalid':l.UserID.errors && IsLoginSubmitted}" placeholder="Mobile Number">
+                                <div *ngIf="l.UserID.errors && IsLoginSubmitted">
+                                   <span class="errorMsg" *ngIf="l.UserID.errors.required">Mobile Number Required</span>
+                                   <span class="errorMsg" *ngIf="l.UserID.errors.pattern">Mobile Number must be 10 digits long</span>
+                                 </div>
+                             </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group cus-form-check-inline">
+                                  <!-- <label>Password</label>  -->
+                                  <input type="password" class="form-control cus-form-control" formControlName="Password" id="loginPassword" [ngClass]="{'is-invalid':l.Password.errors && IsLoginSubmitted}" placeholder="Password">
+                                  <div *ngIf="l.Password.errors && IsLoginSubmitted">
+                                       <span class="errorMsg" *ngIf="l.Password.errors.required">Password Required</span>
+                                       <span class="errorMsg" *ngIf="l.Password.errors.minlength || l.Password.errors.maxlength">Password should be between 8 to 12 characters</span>
+                                       
+                                     </div>
+                              </div>
+                           </div>
+                           <span class="errorMsg" *ngIf="ErrorMsg">{{ErrorMsg}}</span>
+                          <div class="col-md-12">
+                             
+                             <button *ngIf="!IsLoggingIn" type="submit" class="btn btn-primary cus-recharge-btn" (click)="login()">Login</button>
+                             <div *ngIf="IsLoggingIn" class="btn btn-primary cus-loading-btn"> Logging In ...</div>
+                             <div class="links">
+                             <a (click)="gotoSignUp()"><span >Register Now</span></a>
+                             <a (click)="gotoForgetPass()" style="float: right;">Forget Password</a>
+                           </div>
+                          </div>
+                          <div class="tab-content cus-content">                             
+                            <div class="d-flex align-items-center my-4">                             
+                              <hr class="flex-grow-1">
+                              <span class="mx-2">OR LOGIN WITH</span>
+                              <hr class="flex-grow-1">
+                            </div>
+                              <div class="row mb-3">
+                                <div class="col-6">
+                                    <a class="social-btn fb"(click)="SubmitFacebookLogin()"><i class="fa fa-facebook" aria-hidden="true"></i>Facebook</a>
+                                </div>
+                                <div class="col-6">
+                                    <a class="social-btn google"><i class="fa fa-google" aria-hidden="true"></i>Google</a>
+                                </div>
+                              </div>
+                            </div>
+                       </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+          
+        </div>
+     </div>
+    </div>

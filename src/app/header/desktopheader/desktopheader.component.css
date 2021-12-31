@@ -1,0 +1,83 @@
+.mini-cart
+{
+    position: absolute;
+    right: 10px;
+    margin-top: 10px;
+}
+.mobile-dropdown-menu.show {
+    display: block;
+    left: -360px!important;
+    width: 388px;
+    margin-top: 5px;
+}
+.mobile-dropdown-menu li {
+    display: block;
+    border-bottom: 1px solid #ebebeb;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.mobile-dropdown-menu li div {
+    width: 40px;
+    display: inline-block;
+}
+.welcome-sec
+{
+    font-size: 13px;
+    display: inline-block;
+    padding: 0 10px 0 0;
+    font-weight: 600;
+}
+.welcome-sec span
+{
+    font-style: italic;
+    font-weight: 400;
+}
+.btn-cus-mobile-menu
+{
+    cursor: pointer;
+}
+#birthdayImg{
+    height: 70px;
+    
+}
+.desktopimgdiv{
+    width: 60%;
+    text-align: center;
+    
+}
+.logo img
+{
+    height: 50px;
+}
+@media screen and (max-width:772px){
+    #birthdayImg{
+        height: 100% !important;
+        width: 42% !important;
+    }
+    .desktopimgdiv{
+        width: 40% !important;
+        text-align: center !important;
+        position:fixed !important;
+        margin-left: 50px !important;
+        
+    }
+    .logo img
+{
+    height: 20px;
+    width: 50px;
+}
+}

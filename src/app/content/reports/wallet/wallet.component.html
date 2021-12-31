@@ -1,0 +1,78 @@
+
+<div class="container-box">
+<div class="header">
+Wallet
+</div>
+<div class="content">
+    <div class="search" *ngIf="IsSearchOpen">
+        <div class="row">
+    <div class="header-left col-9">Search</div>
+    <div class="header-right col-3"><span class="close" (click)="toggleSearch()"><i class="fa fa-times" aria-hidden="true"></i></span> </div>
+        </div>
+        <hr>
+        <form [formGroup]="SearchForm">
+            <div class="row">
+            
+              <div class="col-12 col-md-3">
+                  <label>From Date</label>
+                <input type="text"  class="form-control" bsDatepicker formControlName="fromdate" [bsConfig]="FromConfig" [(ngModel)]="FromDate" (bsValueChange)="onValueChange($event)">
+              </div>
+              <div class="col-12 col-md-3">
+                  <label>To Date</label>
+                  <input type="text"  class="form-control" bsDatepicker formControlName="todate" [bsConfig]="ToConfig" [(ngModel)]="ToDate" >
+              </div>
+              <div class="col-12 col-md-3">
+                  <span class="btn" (click)="Search()"><i class="fa fa-search" aria-hidden="true"></i> Search</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="addmoney-button" >
+            <aditya-addmoney></aditya-addmoney>
+          </div>
+        <div class="search-button" *ngIf="!IsSearchOpen">
+            <span class="btn" (click)="toggleSearch()"><i class="fa fa-search" aria-hidden="true"></i> Search</span>
+          </div>
+          <aditya-pageloader *ngIf="!IsReportLoaded"></aditya-pageloader>
+        <div class="report" *ngIf="!IsMobile">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                      <th>Date</th> 
+                    <th>Description</th>
+                    <th>Debit</th>
+                    <th>Credit</th>
+                    <th>Balance</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tbody *ngIf="IsReportLoaded">
+                  <tr *ngFor="let t of SearchData">
+                      <td>{{t.entryDate}}</td>
+                    <td>{{t.description}}</td>
+                    <td>&#x20B9; {{t.debit}}</td>
+                    <td>&#x20B9; {{t.credit}}</td>
+                    <td>&#x20B9; {{t.curentBalance}}</td>
+                    
+                   
+                  </tr>
+                 
+                </tbody>
+              </table>
+        </div>
+        <div class="report" *ngIf="IsMobile">
+          <div class="table" *ngIf="IsReportLoaded">
+              <div class="row" *ngFor="let t of SearchData">
+                <div class="col-9">Date: <b>{{t.entryDate}}</b></div>
+                <div class="col-3"></div>
+                <div class="col-9">Description: <b>{{t.description}}</b></div>
+                  <div class="col-9">Debit:<b>&#x20B9; {{t.debit}}</b> | Credit:<b>&#x20B9; {{t.credit}}</b> | Balance:<b>&#x20B9; {{t.curentBalance}}</b></div>
+                  <div class="col-3">
+                  </div>
+              </div>
+             
+          </div>
+        </div>
+  </div>
+</div>

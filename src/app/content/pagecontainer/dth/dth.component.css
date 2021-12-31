@@ -1,0 +1,76 @@
+.slide img{
+    height: 432px;
+}
+
+@media (max-width: 479px)
+         {
+.slide img{
+    height: auto;
+}
+}
+.tab-section
+{
+}
+.tab-section .nav-item
+{
+    padding: 0px;
+}
+ .tab-section .nav-item:hover
+{
+    background: inherit;
+}
+ .tab-section .nav-link
+{
+    padding: 5px;
+    color: white;
+}
+.tab-section .nav-tabs 
+{
+    padding: 5px 0 0;
+    background-color: #0d6ab4;
+}
+.tblheader
+{
+    width: 183px;
+}
+.Customer-Detail{
+    right: 0;
+    padding: 0 20px 0 0;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: #929292;
+    cursor: pointer;
+}
+.table .button
+{
+    border: 1px solid #002447;
+    background: #fff;
+    color: #002447;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    width: 74px;
+    text-align: center;
+
+}
+.table .button:hover
+{
+    background: #002447;
+    color: #fff;
+
+}
+.tblROffer{
+    max-height: 345px;
+    overflow-y: scroll;
+}
+.tblCustInfo{
+    background-color: #e6eded;
+    border-top:0px;
+}
+.btnMore{
+    background-color: teal;
+    color: white;
+    border: 1px  #0d6ab4;
+    border-radius: 4px;
+}

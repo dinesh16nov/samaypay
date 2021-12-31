@@ -1,0 +1,81 @@
+
+<div class="container-box">
+    <div class="header">Choose Membership Type</div>
+    <div class="content">
+        <aditya-pageloader *ngIf="!IsMemberTypeloaded"></aditya-pageloader>
+    <div class="report table-responsive">
+      <h5 class="text-success" *ngIf="statuscode==1">{{msg}}</h5>
+      <h5 class="text-danger" *ngIf="statuscode==-1">{{msg}}</h5>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>MemberShipType</th>
+                <th class="text-right">CouponCount</th>
+                <th class="text-right">CouponValue</th>
+                <th>Description</th>
+                <th class="text-right">ValidityInDays</th>
+                <th class="text-right">Cost</th> 
+                <th class="text-center">Purchase</th> 
+              </tr>
+            </thead>
+            <tbody *ngIf="IsMemberTypeloaded">
+              <tr *ngFor="let t of webMemberTypeModel.memberTypes;let i=index">
+                <td>{{i+1}}</td>
+                <td>{{t.memberShipType}}
+                <span class="btn btn-sm btn-info" *ngIf="t.isIDActive==true" (click)="onClickGetCoupons(CouponPopup)">Coupons</span>
+                <span class="btn btn-sm btn-success" *ngIf="t.isIDActive==false" (click)="onClickGetCoupons(CouponPopup)" >Coupons</span>
+                </td>
+                <td class="text-right">{{t.couponCount}}</td>
+                <td class="text-right">&#x20B9; {{t.couponValue}}</td>
+                <td>{{t.remark}}</td>
+                <td class="text-right">{{t.couponValidityDays}}</td>
+                <td class="text-right">{{t.cost}}</td>
+                <td class="text-center">
+                  <span class="text-danger " *ngIf="t.isIDActive==true">ACTIVATED</span>   
+                  <span class="btn btn-outline-success btn-sm" *ngIf="t.isIDActive==false && IsMembershipActive==false" (click)="onClickPurchase(t.id)">PURCHASE COUPON</span>                 
+                </td>                  
+              </tr>
+            </tbody>
+          </table>
+    </div>
+      </div>
+    </div>
+    <ng-template #CouponPopup>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Coupon List</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="couponModalView?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-success" *ngIf="statuscode==1">{{msg}}</h5>
+        <h5 class="text-danger" *ngIf="statuscode==-1">{{msg}}</h5>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>CouponCode</th>
+              <th>CouponValue</th>
+              <th>CouponExpiry</th>
+              <th>RedeemDate</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="coupons !=undefined">
+            <tr *ngFor="let t of coupons;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{t.couponCode}}</td>
+              <td>{{t.couponValue}}</td>
+              <td>{{t.couponExpiry}}</td>
+              <td>{{t.redeemDate}}</td>
+              <td>
+                <span class="btn btn-info btn-sm" *ngIf="t.isRedeemed==true">REDEEMD</span>   
+                <span class="btn btn-outline-info btn-sm" *ngIf="t.isRedeemed==false" (click)="onClickRedeem(t.couponCode)">REDEEM</span> 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+    

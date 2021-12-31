@@ -1,0 +1,197 @@
+<div class="cus-container">
+      <div class="container-fluid">
+          <div class="row">
+             <div class="col-md-4">
+                <div class="form-outter-sec">
+                   <div class="container">
+                      <h3>Prepaid Mobile Recharge</h3>
+                      <form [formGroup]="RechargeForm">
+
+                         <div class="form-group row">
+                           <div class="col-md-12">
+                              <div class="form-group  cus-form-check-inline">
+                                 <label >Operator</label>
+                                 <select2 [data]="OperatorData" class="form-control"  [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>
+                                 <span class="errorMsg" *ngIf="(operator==0 && IsRechargeSubmitted)">Select Operator</span>
+                              </div>
+                           </div>
+                            <div class="col-md-12">
+                               <div class="form-group cus-form-check-inline">
+                                  <!-- <label>Mobile Number</label> -->
+                                  <input type="phone" class="form-control cus-form-control" formControlName="mobile"  [(ngModel)]="mobile" maxlength="odata?(odata.lengthMax==0?odata.length:odata.lengthMax):10" minlength="odata?odata.length:10"  [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}" (keyup)="checkOperator()"  placeholder="Mobile Number">
+                                  <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
+                                    <span class="errorMsg">{{spnmobile}}</span>
+                                       <!-- <span class="errorMsg" *ngIf="r.mobile.errors.minlength || r.mobile.errors.maxlength">Mobile Number must be 10 digits long</span>
+                                       <span class="errorMsg" *ngIf="r.mobile.errors.pattern && odata.isAccountNumeric">Invalid Mobile No.</span> -->
+                                       
+                                     </div>
+                               </div>
+                            </div>
+                           
+                            <div class="col-md-12">
+                               <div class="form-group  cus-form-check-inline">
+                                  <label>Circle</label>
+                                  <select2 [data]="CircleData" class="form-control " [value]="circle" (valueChanged)="Circlechanged($event)"   dropdownPosition="bottom" [cssImport]=true [options]="CircleOptions"></select2>
+                                  <span class="errorMsg" *ngIf="circle==0 && IsRechargeSubmitted">Select Circle</span>
+                               </div>
+                            </div>
+                            <div class="col-md-12">
+                               <div class="form-group form-check-inline cus-form-check-inline">
+                                  <input type="text" class="form-control cus-form-control" formControlName="amount" [(ngModel)]="amount"  [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}"  placeholder="Amount">
+                                  <a (click)="browseSimplePlan()" class="Browse-plan">  Browse Plans <br>of all operators</a>
+                               </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
+                                 <span class="errorMsg">{{spnamount}}</span>
+                               </div>
+                            </div>
+                            <div class="col-md-12">
+                               <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Recharge</button>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-8">
+                  <div class="form-outter-sec" *ngIf="IsbannerShow">
+                        <div class="slider">
+                         <ngx-slick-carousel class="carousel" 
+                         #slickModal="slick-carousel" 
+                         [config]="slideConfig" 
+                        
+                         >
+         <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+               <img src="{{slide.resourceUrl}}" alt="" width="100%">
+         </div>
+       </ngx-slick-carousel>
+      </div></div>
+                <div *ngIf="!IsbannerShow" class="form-outter-sec tab-section form-outter-sec-info" >
+                   <tabset #staticTabs>
+                     
+                      <tab heading="Browse Plan" id="tabheader">
+                           <h3 *ngIf="operator>0" style="padding: 0px 15px;">{{labelmsg}}</h3>
+                           <tabset  *ngIf="simplePlan.length>0">
+                                 <table class="table table-hover tabs table-striped" >
+                                       <thead>
+                                          <tr>
+                                             <td>Description</td>
+                                             <td style="width: 90px;">Validity</td>
+                                             <td style="width: 100px;">Price</td>
+                                          </tr>
+                                       </thead>
+                                         
+                                        </table>
+                                 <ng-container *ngFor="let t of simplePlan">
+                                    <tab  heading="{{t.name}}" *ngIf="t.data"  class="tabs">
+                                       
+                                          <table class="table table-hover table-borderless table-striped" >
+                                             
+                                                <tbody >
+                                                  <tr *ngFor="let d of t.data">
+                                                    <td>{{d.desc}}</td>
+                                                    <td style="width: 90px;">{{d.validity}}</td>
+                                                    <td style="width: 100px;"><div class="button" (click)="onamountClick(d.rs)">&#x20B9; {{d.rs}}</div> </td>
+                                                  </tr>
+                                                  
+                                                </tbody>
+                                              </table>
+                                       
+                                    </tab>
+                                 </ng-container>
+                                  </tabset>
+                      </tab>
+                      <tab heading="Best Offer" (selectTab)="onSelectBestOffer($event)" *ngIf="mobile && mobile.toString().length==10">
+                           <h3 style="padding: 0px 30px;" *ngIf="mobile">Best offer on Mobile Number - {{mobile}}</h3>
+                           <div *ngIf="IsBestOfferLoaded">
+                           <table class="table table-hover table-borderless" >
+                                             
+                                 <tbody >
+                                   <tr *ngFor="let b of bestOffer">
+                                     <td>{{b.desc}}</td>
+                                     
+                                     <td style="width: 100px;"><div class="button" (click)="onamountClick(b.rs)">Rs. {{b.rs}}</div> </td>
+                                   </tr>
+                                   
+                                 </tbody>
+                               </table>
+                              </div>
+                              <aditya-pageloader *ngIf="!IsBestOfferLoaded"></aditya-pageloader>
+                              <div style="text-align: center;padding: 20px;font-size: 20px; "*ngIf="!IsBestOfferDataLoaded">
+                                 <img style="display: block;margin: auto;padding: 20px;" src="../../../../assets/img/cus-img/sadface.png">
+                                 No offer available on Mobile Number - {{mobile}}
+                              </div>
+                      </tab>
+                      <tab heading="Promo Codes">
+                           <div class="outter-promo-sec">
+                                 <ul>
+                                    <li>
+                                       <h4>RECHARGEFIRST125</h4>
+                                       <span class="promocode-detail">
+                                       <span><a href="#">View detail</a></span>
+                                       </span>
+                                       <p>
+                                          <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                       </p>
+                                    </li>
+                                    <li>
+                                       <h4>RECHARGEFIRST125</h4>
+                                       <span class="promocode-detail">
+                                       <span><a href="#">View detail</a></span>
+                                       </span>
+                                       <p>
+                                          <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                       </p>
+                                    </li>
+                                    <li>
+                                       <h4>RECHARGEFIRST125</h4>
+                                       <span class="promocode-detail">
+                                       <span><a href="#">View detail</a></span>
+                                       </span>
+                                       <p>
+                                          <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                       </p>
+                                    </li>
+                                    <li>
+                                       <h4>RECHARGEFIRST125</h4>
+                                       <span class="promocode-detail">
+                                       <span><a href="#">View detail</a></span>
+                                       </span>
+                                       <p>
+                                          <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                       </p>
+                                    </li>
+                                    <li>
+                                       <h4>RECHARGEFIRST125</h4>
+                                       <span class="promocode-detail">
+                                       <span><a href="#">View detail</a></span>
+                                       </span>
+                                       <p>
+                                          <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                       </p>
+                                    </li>
+                                 </ul>
+                              </div>
+                      </tab>
+                      
+                      <tab heading="Recents" *ngIf="recentRecharge.length>0">
+
+                        <div class="col-12 recent-table" *ngFor="let d of recentRecharge">
+                           <div class="row" (click)="onRecentClick(d)">
+                              <div class="col-3 td"><img style="width: 50px;" src="http://roundpay.net/Image/operator/{{d.oid}}.png"></div>
+                              <div class="col-3 td">{{d.operator}}</div>
+                              <div class="col-3 td">{{d.account}}</div>
+                              <div class="col-3 td"><div class="button" >Rs. {{d.amount}}</div></div>
+                           </div>
+
+                        </div>
+                          
+                      </tab>
+                   </tabset>
+                  
+                </div>
+             </div>
+          </div>
+       </div>
+      </div>

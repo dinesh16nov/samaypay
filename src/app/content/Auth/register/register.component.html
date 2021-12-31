@@ -1,0 +1,85 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+           <div class="col-md-12">
+              <div class="form-outter-sec row">
+                 <div class="container col-md-6">
+                    <h3><i class="fa fa-user" aria-hidden="true"></i> Register</h3>
+                    <form [formGroup]="SignUpForm">
+                       <div class="form-group row">                         
+                          <div class="col-md-12">
+                             <div class="form-group  cus-form-check-inline">
+                                <!-- <label>Login ID</label> -->
+                                <input type="text" formControlName="name" [ngClass]="{'is-invalid': register.name.errors && IsSignUpSubmitted}" class="form-control cus-form-control" placeholder="Name" >
+                             </div>
+                          </div>
+                          <div class="col-md-12">
+                             <div class="row">
+                               <div class="col-md-6 col-6">
+                                  <div class="form-group cus-form-check-inline">
+                                      <!-- <label>Password</label>  -->
+                                     <input type="text" formControlName="mobileNo" [ngClass]="{'is-invalid': register.mobileNo.errors && IsSignUpSubmitted}" class="form-control cus-form-control"  placeholder="Mobile no.">
+                                  </div>
+                               </div>
+                               <div class="col-md-6 col-6">
+                                  <div class="form-group cus-form-check-inline">
+                                      <!-- <label>Password</label>  -->
+                                     <input type="password" formControlName="Password" [ngClass]="{'is-invalid': register.Password.errors && IsSignUpSubmitted}" class="form-control cus-form-control"  placeholder="Password">
+                                  </div>
+                               </div>
+                             </div>
+                           </div>
+                           <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-md-6  col-6">
+                                   <div class="form-group cus-form-check-inline">
+                                       <!-- <label>Password</label>  -->
+                                      <input type="text" formControlName="EmailID" [ngClass]="{'is-invalid': register.EmailID.errors && IsSignUpSubmitted}" class="form-control cus-form-control"  placeholder="Email Id">
+                                   </div>
+                                </div>
+                                <div class="col-md-6  col-6">
+                                   <div class="form-group cus-form-check-inline">
+                                       <!-- <label>Password</label>  -->
+                                      <input type="text" formControlName="pincode" [ngClass]="{'is-invalid': register.pincode.errors && IsSignUpSubmitted}" class="form-control cus-form-control"  placeholder="Pincode">
+                                   </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group cus-form-check-inline">
+                                    <!-- <label>Password</label>  -->
+                                   <textarea formControlName="address" [ngClass]="{'is-invalid':register.address.errors && IsSignUpSubmitted}" class="form-control cus-form-control" rows="3" placeholder="Address"></textarea>
+                                </div>
+                              </div>
+                              <span class="errorMsg" *ngIf="ErrorMsg">Error : {{ErrorMsg}}</span>
+                          <div *ngIf="!IsLoggingIn" class="col-md-4  col-4">
+                              <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="gotoLogin()">Login</button>                            
+                          </div>
+                          <div *ngIf="!IsLoggingIn" class="col-md-8  col-8">
+                              <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="signUP()">Register</button>                             
+                           </div>
+                           <div *ngIf="IsLoggingIn" class="btn cus-loading-btn"> Creating Account ...</div>
+                          <div _ngcontent-ism-c1="" class="tab-content cus-content">                             
+                            <div _ngcontent-ism-c1="" class="d-flex align-items-center my-3">                             
+                              <hr _ngcontent-ism-c1="" class="flex-grow-1">
+                              <span _ngcontent-ism-c1="" class="mx-2">OR LOGIN WITH</span>
+                              <hr _ngcontent-ism-c1="" class="flex-grow-1">
+                            </div>
+                              <div _ngcontent-ism-c1="" class="row mb-3">
+                                <div _ngcontent-ism-c1="" class="col-6">
+                                    <a class="social-btn fb"><i class="fa fa-facebook" aria-hidden="true"></i>Facebook</a>
+                                </div>
+                                <div _ngcontent-ism-c1="" class="col-6">
+                                    <a class="social-btn google"><i class="fa fa-google" aria-hidden="true"></i>Google</a>
+                                </div>
+                              </div>
+                            </div>
+                       </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+          
+        </div>
+     </div>
+    </div>

@@ -1,0 +1,18 @@
+.navbar
+{
+    background: #002447;
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link
+{
+    color: #fff;
+}
+.navbar .active-link {
+    background: #12447b;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+

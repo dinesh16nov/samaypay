@@ -1,0 +1,108 @@
+.container-box
+{
+    background: #fff;
+    margin: 30px;
+    
+    border-radius: 5px;
+}
+.couponModal{
+
+}
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 800px!important;
+    
+}
+}
+.couponModal .modal-dialog {
+    max-width: 800px!important;
+    
+}
+.header
+{
+    background: #002447;
+    color: #fff;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 10px;
+}
+
+.content
+{
+    padding: 15px;
+}
+
+
+
+
+@media (max-width: 414px)
+{
+    .container-box
+    {
+        background: #fff;
+        margin: 5px 0;
+    }
+    .header {
+        
+        border-radius:0;
+        
+    }
+    .col-12
+    {padding: 0;}
+    .report
+    {
+
+    }
+    .report .table
+    {
+        display: table;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+    .report .table .row
+    {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        font-size: 11px;
+    }
+    .report .table .row:hover
+    {
+        background: #eee;
+    }
+    .report .table .row .col-9,.report .table .row .col-12
+    {
+        padding: 0;
+    }
+    .report .table .row .col-9 span, .report .table .row .col-3 span
+    {
+        font-size: 8px;
+    } 
+    .status{
+        font-weight: 600;
+        font-size: 9px;
+    }
+    .content  .search-button .btn
+    {
+        font-size: 12px;
+    }
+} 
+
+@media (max-width: 320px)
+{
+    .report .table .row
+    {
+        margin-bottom: 10px;
+        border-bottom: 1px solid;
+        font-size: 10px;
+    }
+    .report .table .row .col-3 span, .report .table .row .col-9 span
+    {
+        font-size: 6px;
+    } 
+    .status{
+        font-weight: 600;
+        font-size: 7px;
+    }
+}

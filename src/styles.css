@@ -1,0 +1,312 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Work+Sans&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
+				/* width */
+         ::-webkit-scrollbar {
+               width: 5px;
+               height: 5px;
+              }
+              
+              /* Track */
+              ::-webkit-scrollbar-track {
+               background: #ccc
+              }
+              
+              /* Handle */
+              ::-webkit-scrollbar-thumb {
+               background: #5897fb;
+              }
+              
+               /* Handle on hover */
+               ::-webkit-scrollbar-thumb:hover {
+                 background: linear-gradient(90deg, #002447 0%, #002447 100%);
+               }
+              
+         body
+         {
+         background: #f3f7f8;
+         font-family: 'Work Sans', sans-serif;
+         }
+         .cus-navbar-dark li a
+         {
+         color: #575656;
+         font-weight: 600;
+         }
+         .tab-background
+         {
+         background: #002447;
+         padding: 1.5em 0;
+         }
+         .auth
+         {
+            padding: 1em 0 1em;
+         }
+         .container-fluid .nav
+         {
+            padding: 0 17px;
+         }
+         .cus-nav
+         {display: inherit;}
+         .cus-nav li a
+         {
+            background: transparent;
+            color: #fff !important;
+            padding: 0 0.5em 0;
+            text-align: center;
+            min-width: 80px;
+            cursor: pointer;
+            
+         }
+         .cus-nav .active
+         {
+            background: #12447b;
+            padding: 5px;
+            border-radius: 5px;
+         }
+         .cus-nav-drop .active
+         {
+            
+         }
+         .icon-img
+         {
+         display: block;
+         margin: auto;
+         width: 35px;
+         margin-bottom: 8px;
+         }
+         .nav-list a
+         {
+         color: #7d7d7d !important;
+         text-align: left !important;
+         }
+         .icon-img1
+         {
+            display: block;
+            margin: 8px 10px 5px 10px;
+            width: 25px;
+            float: left;
+         }
+         .cus-dropdown-item {
+            font-size: 13px;
+            border-bottom: 1px solid #43424240;
+            padding: 7px 0 11px 0 !important;
+            
+        }
+        .cus-nav-link
+        {
+         color: #fff !important;
+         padding: 0 0.5em 0;
+        }
+        .cus-dropdown-item:hover
+        {
+           background: #12447b;
+         }
+         .cus-recharge-btn
+         {
+         background: #002447;
+         border: 1px solid #002447;
+         margin-bottom: 5px;
+         text-transform: uppercase;
+         padding: 15px 5px;
+         font-weight: 500;
+         letter-spacing: 0.4px;
+         width: 100%;
+         }
+         .cus-loading-btn
+         {
+            background: #002447;
+            color: #fff;
+            border: 1px solid #002447;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            padding: 15px 5px;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            width: 100%;
+            pointer-events: none;
+         }
+         .form-outter-sec-info
+         {
+            height: 100%;
+            padding: 1em 0 2em;
+         }
+         .form-outter-sec
+         {
+         background: #ffffff;
+         margin-top: 0px;
+         margin-right: 0em;
+         margin-left: 0em;
+         border: 0px solid #ccc;
+         border-radius: 5px;
+         padding: 1em 0 1em;
+         box-shadow: 0px 5px 20px -19px #000;
+         
+         margin-bottom: 1em;
+         }
+         .form-outter-sec h3
+         {
+         font-size: 15px;
+         font-weight: 600;
+         margin-top: 15px;
+         margin-bottom: 15px;
+         }
+         .cus-form-check-inline
+         {
+         width: 100%;
+         }
+         .cus-padding
+         {
+         padding: 0 0 0 10px;
+         }
+         .cus-form-control
+         {
+         height: calc(2.4em + .75rem + 2px);
+         font-size: 15px;
+         border: none;
+         border-bottom: 1px solid #aaa;
+         border-radius: 0;
+         }
+         .Browse-plan
+         {
+         position: absolute;
+         right: 0;
+         padding: 0 20px 0 0;
+         font-size: 12px;
+         text-transform: capitalize;
+         color: #929292;
+         cursor: pointer;
+         }
+         .nav-item
+         {
+            display: block;
+            margin: 0 0.7em;
+            padding: 5px;
+         }
+         .nav-item:hover
+         {
+            background: #12447b;
+            padding: 5px;
+            border-radius: 5px;
+         }
+         .cus-navbar-dark
+         {
+            padding-left: 2em;
+         }
+         .cus-container
+         {
+            margin: 1.5em 2em;
+
+         }
+
+         @media (max-width: 479px)
+         {
+            .cus-container
+         {
+            margin: 20px 0em;
+
+         }
+         .container-fluid
+         {
+            padding: 0;
+         }
+         .form-outter-sec {
+  
+            height: auto;
+            margin-bottom: 2em;
+        }
+         }
+         
+
+.select2-container 
+{
+      min-width: 100% !important;
+      border: none;
+      max-width: 100%;
+      
+}     
+select2
+{
+   border: 0 !important;
+   padding: 0 !important;
+}    
+.select2-container .select2-selection--single {
+   
+   height: 50px !important;
+   border: 0 !important;
+   padding: 11px;
+   border-radius: 0 !important;
+   border-bottom: 1px solid #aaa !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow 
+{
+   height: 26px;
+   position: absolute;
+   top: 12px!important;
+   right: 1px;
+   width: 20px;
+}
+
+.select2-container--default .select2-results__option {
+   background-color: #fff;
+   overflow: hidden;
+}
+.select2-container--default .select2-results__option:hover {
+   background-color: #002447;
+   overflow: hidden;
+}
+.select2-results__option .dropdown-img img
+{
+    width: 35px;
+    margin-right: 0%;
+    display: inline;
+    padding-top: 5px;
+}
+.select2-results__option .dropdown-img span
+{
+   padding: 13px 0;
+   width: 85%;
+   float: right;
+   font-weight: 600;
+}
+.select2-results {
+   
+   border: 1px solid #aaa;
+}
+
+.search-ddl .dropdown-img img
+{
+   width: 30px;
+   margin-right: 1%;
+   display: inline;
+}
+.search-ddl .dropdown-img span
+{
+   width: 30px;
+   margin-left: 2%;
+   display: inline;
+   font-weight: 600;
+   position: absolute;
+}
+.errorMsg
+{
+    color: red;
+    padding: 0px 15px;
+}
+
+.accountRemark
+{
+   font-size: 12px;
+    padding-top: 1px;
+    color: #20bf79;
+}
+
+.slider
+{
+    padding: 0 1em 0 1em;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

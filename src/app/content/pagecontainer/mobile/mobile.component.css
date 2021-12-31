@@ -1,0 +1,154 @@
+/* //// Browse Plan  //// */
+:host >>> .tabs
+{
+    max-height: 345px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 0;
+}
+.tab-section
+{
+
+}
+:host >>> .tab-section .nav-item
+{
+    padding: 0px;
+}
+:host >>> .tab-section .nav-item:hover
+{
+    background: inherit;
+}
+:host >>> .tab-section .nav-link
+{
+    padding: 5px;
+}
+:host >>> .tab-section .nav-tabs 
+{
+    padding: 5px 0 0;
+    background-color: #0d6ab4;
+}
+:host >>> .tab-section .nav-tabs .nav-item .nav-link.active{
+  
+   color: white;
+}
+:host >>> .tab-section .tab-container>.tab-content>#tabheader>.tab-container>ul
+{
+    padding: 5px 0 0;
+    background-color: #c5faf5;
+}
+:host >>> .tab-section .tab-container>.tab-content>#tabheader>.tab-container>.nav-tabs .nav-item .nav-link.active
+{
+    color: black;
+}
+.table .button
+{
+    border: 1px solid #002447;
+    background: #fff;
+    color: #002447;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    width: 74px;
+    text-align: center;
+}
+.table .button:hover
+{
+    background: #002447;
+    color: #fff;
+}
+
+/* //// Promo Codes //// */
+.outter-promo-sec
+{
+margin: 15px 0;
+overflow-y: scroll;
+height: 326px;
+}
+.outter-promo-sec ul
+{
+margin-right: 10px;
+padding: 0;
+list-style: none;
+}
+.outter-promo-sec li
+{    padding: 15px;
+border: 1px solid #ebebeb;
+margin: 10px 0;
+color: #999;
+font-size: 14px;
+overflow: hidden;
+border-radius: 4px;
+}
+.outter-promo-sec li h4
+{
+color: #434242;
+padding-bottom: 5px;
+font-weight: 600;
+display: inline;
+font-size: 15px;
+}
+.outter-promo-sec li p
+{
+position: relative;
+}
+.promocode
+{
+width: 85%;
+}
+ul li p .promocode 
+{
+float: left;
+}
+.promocode-detail
+{
+    text-align: center;
+    vertical-align: bottom;
+    bottom: 0;
+    font-size: 12px;
+    float: right;
+    border-radius: 3px;
+    background: #03A9F4;
+    padding: 4px 10px;
+    margin-top: 12px;
+}
+.promocode-detail span a
+{
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.recent-table
+{
+    margin: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 96.5%;
+    cursor: pointer;
+    height: 70px;
+    line-height: 50px;
+    font-weight: 600;
+}
+.recent-table:hover
+{    background: #f3f7f8;
+}
+.recent-table .td
+{
+    
+}
+
+
+.slide
+img{
+    height: 487px;
+}
+
+@media (max-width: 479px)
+         {
+.slide
+img{
+    height: auto;
+}
+}

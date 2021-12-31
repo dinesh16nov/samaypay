@@ -1,0 +1,39 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+           <div class="col-md-12">
+              <div class="form-outter-sec row">
+                 <div class="container col-md-4">
+                    <h3><i class="fa fa-user" aria-hidden="true"></i> Login</h3>
+                    <form [formGroup]="LoginForm">
+                       <div class="form-group row">
+                         
+                          <div class="col-md-12">
+                             <div class="form-group  cus-form-check-inline">
+                                 <label>OTP sent to your mobile number</label> 
+                                
+                                <input  class="form-control cus-form-control" autocomplete="off" maxlength="10" formControlName="otp" id="loginMobile" [ngClass]="{'is-invalid':l.otp.errors && IsLoginSubmitted}" placeholder="Enter OTP">
+                                <div *ngIf="l.otp.errors && IsLoginSubmitted">
+                                   <span class="errorMsg" *ngIf="l.otp.errors.required">OTP Required</span>
+                                   <span class="errorMsg" *ngIf="l.otp.errors.minlength || l.UserID.errors.maxlength">OTP must be 6 digits long</span>
+                                 </div>
+                             </div>
+                          </div>
+                         
+                           <span class="errorMsg" *ngIf="ErrorMsg">{{ErrorMsg}}</span>
+                          <div class="col-md-12">
+                             
+                             <button *ngIf="!IsLoggingIn" type="submit" class="btn btn-primary cus-recharge-btn" (click)="verifyOtp()">Verify OTP</button>
+                             <div *ngIf="IsLoggingIn" class="btn btn-primary cus-loading-btn"> Verifying OTP ...</div>
+                             
+                          </div>
+                         
+                       </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+          
+        </div>
+     </div>
+    </div>

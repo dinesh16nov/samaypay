@@ -1,0 +1,48 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+           <div class="col-md-12">
+              <div class="form-outter-sec row">
+                 <div class="container col-md-4">
+                    <h3><i class="fa fa-user" aria-hidden="true"></i> Forget<br/>Password</h3>
+                    <form [formGroup]="LoginForm">
+
+                       <div class="form-group row">
+                         
+                          <div class="col-md-12">
+                             <div class="form-group  cus-form-check-inline">
+                                <!-- <label>Login ID</label> -->
+                                
+                                <input  class="form-control cus-form-control" maxlength="10" formControlName="UserID" id="loginMobile" [ngClass]="{'is-invalid':l.UserID.errors && IsLoginSubmitted}" placeholder="Mobile Number">
+                                <div *ngIf="l.UserID.errors && IsLoginSubmitted">
+                                   <span class="errorMsg" *ngIf="l.UserID.errors.required">Mobile Number Required</span>
+                                   <span class="errorMsg" *ngIf="l.UserID.errors.pattern">Mobile Number must be 10 digits long</span>
+                                 </div>
+                             </div>
+                          </div>
+                          
+                           <span class="errorMsg" *ngIf="ErrorMsg">{{ErrorMsg}}</span>
+                           <span class="notificationMsg" *ngIf="NotificationMsg">{{NotificationMsg}}</span>
+                           <div class="col-md-12">
+                              <aditya-pageloader *ngIf="FPloader"></aditya-pageloader>
+                           </div>
+
+                          <div class="col-md-12">
+                             
+                             <button *ngIf="!IsLoggingIn" type="submit" class="btn btn-primary cus-recharge-btn" (click)="forgetPassword()">Get Password</button>
+                             <div *ngIf="IsLoggingIn" class="btn btn-primary cus-loading-btn"> getting password ...</div>
+                             <div class="links">
+                             <a (click)="gotoSignUp()"><span >Register Now</span></a>
+                             <a (click)="gotoLogin()" style="float: right;">Login</a>
+                           </div>
+                          </div>
+                         
+                       </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+          
+        </div>
+     </div>
+    </div>

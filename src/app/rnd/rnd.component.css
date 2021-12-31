@@ -1,0 +1,60 @@
+.rndContainer
+{
+    margin: 10px;
+    min-height: 500px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+.action
+{
+    background: #fff;
+    box-shadow: 1px 1px 15px -10px #000;
+    margin-top: 50px;
+    
+    
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.action .header
+{
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: #002447;
+    color: #fff;
+}
+.action .content
+{
+    min-height: 200px;
+    padding: 20px;
+}
+.action .content img
+{
+    width: 50px;
+}
+.action .content .text
+{
+    font-weight: 600;
+}
+.action .content .cus-text
+{
+    font-weight: 600;
+    font-size: 17px;
+}
+.action .footer
+{
+    padding: 0 85px;
+    margin: 10px;
+}
+.action .footer a
+{
+    margin: 1em 0;
+    box-shadow: none;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 1em;
+}

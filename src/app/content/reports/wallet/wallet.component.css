@@ -1,0 +1,178 @@
+
+.container-box
+{
+    background: #fff;
+    margin: 30px;
+    
+    border-radius: 5px;
+}
+.header
+{
+    background: #002447;
+    color: #fff;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 10px;
+}
+
+.content
+{
+    padding: 15px;
+}
+.content .search
+{
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+}
+.content .addmoney-button
+{
+    float: left;
+    margin: 10px;
+}
+.content  .search-button
+{
+    float: right;
+    margin: 10px;
+}
+.content  .search-button span,.content .addmoney-button span
+{
+    color: #fff;
+    background-color: #002447;
+    border-color: #002447;
+}
+.content  .search-button span:hover, .content  .addmoney-button span:hover
+{
+    color: #002447;
+    background-color: #fff;
+    border-color: #002447;
+}
+.content .close
+{
+    font-size: 13px;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 5px;
+    color: #002447;
+    text-shadow: none;
+    box-shadow: 1px 1px 1px 0px #002447;
+}
+.content .btn
+{
+    margin-top: 29px;
+    padding: 5px;
+    border: 1px solid #e4e9ec;
+    border-radius: 5px;
+    color: #002447;
+    background-color: #fff;
+    border-color: #002447;
+}
+.content .form-control
+{
+    padding: 6px 10px;
+}
+.content .header-left
+{
+    font-size: 16px;
+    font-weight: 600;;
+}
+.content .header-right
+{
+    text-align: right;
+}
+.content .report
+{ 
+    border: 1px solid #eee;
+    padding: 10px;
+    
+}
+.success
+{
+    color: #077420
+}
+.failed
+{
+    color: #f4061d
+}
+.pending
+{
+    color: #ffc107;
+}
+.refund
+{
+    color: #007bff
+}
+
+
+
+
+@media (max-width: 414px)
+{
+    .container-box
+    {
+        background: #fff;
+        margin: 5px 0;
+    }
+    .header {
+        
+        border-radius:0;
+        
+    }
+    .report
+    {
+
+    }
+    .report .table
+    {
+        display: table;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+    .report .table .row
+    {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        font-size: 11px;
+    }
+    .report .table .row:hover
+    {
+        background: #eee;
+    }
+    .report .table .row .col-9,.report .table .row .col-3
+    {
+        padding: 0;
+    }
+    .report .table .row .col-9 span, .report .table .row .col-3 span
+    {
+        font-size: 8px;
+    } 
+    .status{
+        font-weight: 600;
+        font-size: 9px;
+    }
+    .content  .search-button .btn
+    {
+        font-size: 12px;
+    }
+} 
+
+@media (max-width: 320px)
+{
+    .report .table .row
+    {
+        margin-bottom: 10px;
+        border-bottom: 1px solid;
+        font-size: 10px;
+    }
+    .report .table .row .col-3 span, .report .table .row .col-9 span
+    {
+        font-size: 6px;
+    } 
+    .status{
+        font-weight: 600;
+        font-size: 7px;
+    }
+}

@@ -1,0 +1,54 @@
+<div class="addmoney-button" >
+    <span class="btn" (click)="openQuickVIewPopup(AddMoneyPopup)"><i class="fa fa-plus" aria-hidden="true"></i> Add Money to Wallet</span>
+  </div>
+
+
+  <ng-template #AddMoneyPopup>
+			<div class="modal-header">
+			  <h4 class="modal-title pull-left title"><i class="fa fa-plus" aria-hidden="true"></i> Add Money to Wallet</h4>
+			  <button type="button" class="close pull-right" aria-label="Close" (click)="addMoneyView.hide()">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			<div class="content">
+          <div class="wallet-img">
+            <i class="fas fa-3x fa-wallet"></i>
+            <h4>₹ {{balance}} <a  title="Refresh Wallet Balance"><i aria-hidden="true" class="{{gettingBalanceSpinClass}}" style="font-size: 15px;color: #607D8B;" (click)="getWalletbalance()"></i></a>
+              <br>
+              <span >Your Wallet Balance</span></h4>
+            </div>
+            <div *ngIf="TID==0">
+              <form [formGroup]="AdmoneyForm">
+                <div class="addmoney-form">
+                  <label>Enter Amount</label>
+                  <input type="number" class="form-control" min="1" max="10000" formControlName="amount" [(ngModel)]="amount"  placeholder="Amount"/>
+                  <span *ngIf="IsErrorInValidation" class="text-danger">{{ErrorMsg}}</span>
+                </div>
+                <div class="custom_radio">
+                  <label>Choose Payment Option</label>
+                  <ul >
+                    <li *ngFor="let op of operatorlist" >
+                      <input type="radio" name="RDOopList" id="rdo{{op.id}}" (change)="radioCheckedChange(op.id)"/>
+                      <label for="rdo{{op.id}}"> {{op.text}} </label>
+                      <span class="addmoney-charge">Charges:{{op.charge}}%</span> 
+                    </li>
+                  </ul>
+                  <div *ngIf="IsVPA==true">
+                    <input type="text" class="form-control" placeholder="Enter UPI ID" formControlName="vpa" [(ngModel)]="vpa"/>
+                  </div>
+                  
+                </div>         
+                <div class="addmoney-button" *ngIf="PaymodeID > 0"> 
+                    <span class="btn" (click)="proceedToPay()">Proceed to Pay</span>
+                </div>
+              </form>
+            </div>
+            <div *ngIf="TID>0">
+              <span *ngIf="PGStatus==1">Waiting for gateway confirmation...</span>
+              <span *ngIf="PGStatus==2">Wallet updated Successful</span>
+              <span *ngIf="PGStatus==3">Payment Failed</span>
+            </div>
+      </div>
+			</div>
+		  </ng-template>

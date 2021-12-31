@@ -1,0 +1,202 @@
+.cus-container {
+    margin: 0;
+    
+}
+.container
+{
+    background: #fff;
+    box-shadow: 1px 1px 15px -10px #000;
+    margin-top: 50px;
+    padding-top: 1em;
+}
+.form-outter-sec {
+     background: inherit;
+     margin-top: 0px; 
+     box-shadow: none;
+}
+.social-btn
+{
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px 0;
+    text-align: center;
+    margin: 0px 20px;
+    border-radius: 4px;  
+    color: #fff !important; 
+}
+.social-btn i
+{
+    color: #fff;
+    padding: 0 5px;
+}
+.google
+{
+    background: #d64c3f;
+}
+.fb
+{
+    background: #395795;
+}
+.cus-content
+{
+    width: 100%;
+}
+
+.form-outter-sec h3 i{
+    font-size: 40px;
+    font-weight: 500;
+    display: block;
+}
+.cus-recharge-btn {
+    padding: 6px 0px;
+}
+.wallet-img
+{
+    padding: 1em;
+}
+.wallet-img img
+{
+    width: 70px;
+}
+.wallet-img h5
+{
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+}
+.wallet-balance
+{
+
+}
+.wallet-balance h3
+{
+    text-align: right;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.wallet-balance h3 span
+{
+    color: #28a745;
+    font-weight: 600;
+}
+.wallet-balance h4 span
+{
+    color: #28a745;
+    font-weight: 600;
+}
+.wallet-balance h4
+{
+    text-align: right;
+    font-size: 17px;
+    text-transform: capitalize;
+}
+.wallet-balance .payment-btn
+{
+    float: right;
+    margin: 1em 0;
+    box-shadow: none;
+    color: #fff;
+    text-transform: uppercase;
+    width: 50%;
+    padding: 1em;
+}
+.detail-sec
+{
+
+}
+.detail-sec th
+{
+    float: left;
+    font-size: 13px;
+}
+.detail-sec img
+{
+    width: 50px;
+   
+}
+.error-container
+{
+    text-align: center;
+    color: red;
+}
+.error-container i
+{
+    
+}
+.error{
+    
+}
+
+
+
+
+
+
+
+.action
+{
+    background: #fff;
+    box-shadow: 1px 1px 15px -10px #000;
+    margin-top: 50px;
+    
+    
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.action .header
+{
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: #002447;
+    color: #fff;
+}
+.action .content
+{
+    min-height: 200px;
+    padding: 20px;
+}
+.action .content img
+{
+    width: 50px;
+}
+.action .content .text
+{
+    font-weight: 600;
+}
+.action .content .cus-text
+{
+    font-weight: 600;
+    font-size: 17px;
+}
+.action .footer
+{
+    padding: 0 85px;
+    margin: 10px;
+}
+.action .footer a
+{
+    margin: 1em 0;
+    box-shadow: none;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 1em;
+}
+
+@media (max-width: 414px)
+{
+    .action
+    {
+        margin-top: 20px;
+    }
+    .action .footer {
+        padding: 0 10px;
+        margin: 10px;
+    }
+}

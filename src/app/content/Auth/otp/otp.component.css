@@ -1,0 +1,77 @@
+.cus-container {
+    margin: 0;
+    
+}
+.container
+{
+    background: #fff;
+    box-shadow: 1px 1px 15px -10px #000;
+    margin-top: 50px;
+    padding-top: 4em;
+}
+.form-outter-sec {
+     background: inherit;
+     margin-top: 0px; 
+     box-shadow: none;
+}
+.social-btn
+{
+    display: block;
+    border: 1px solid #ccc;
+    padding: 10px 0;
+    text-align: center;
+    margin: 0px 20px;
+    border-radius: 4px;  
+    color: #fff !important; 
+}
+.social-btn i
+{
+    color: #fff;
+    padding: 0 5px;
+}
+.google
+{
+    background: #d64c3f;
+}
+.fb
+{
+    background: #395795;
+}
+.cus-content
+{
+    width: 100%;
+}
+.form-outter-sec h3 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: -7px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding-top: 5%;
+    box-shadow: -1px -5px 12px -10px #000;
+    width: 100px;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+    height: 100px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: -44px;
+    z-index: 9;
+    background: #fff;
+
+}
+
+.form-outter-sec h3 i{
+    font-size: 40px;
+    font-weight: 500;
+    display: block;
+}
+.cus-recharge-btn {
+    padding: 6px 0px;
+}
+.cus-loading-btn {
+    padding: 6px 0px;
+}
+

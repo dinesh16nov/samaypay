@@ -1,0 +1,67 @@
+.outter-promo-sec
+{
+margin: 15px 0;
+overflow-y: scroll;
+height: 326px;
+}
+.outter-promo-sec ul
+{
+margin-right: 10px;
+padding: 0;
+list-style: none;
+}
+.outter-promo-sec li
+{    padding: 15px;
+border: 1px solid #ebebeb;
+margin: 10px 0;
+color: #999;
+font-size: 14px;
+overflow: hidden;
+border-radius: 4px;
+}
+.outter-promo-sec li h4
+{
+color: #434242;
+padding-bottom: 5px;
+font-weight: 600;
+display: inline;
+font-size: 15px;
+}
+.outter-promo-sec li p
+{
+position: relative;
+}
+.promocode
+{
+width: 85%;
+}
+ul li p .promocode 
+{
+float: left;
+}
+.promocode-detail
+{
+width: 15%;
+text-align: right;
+vertical-align: bottom;
+bottom: 0;
+font-size: 12px;
+float: right;
+}
+.promocode-detail span a
+{
+color: #009688;
+font-size: 12px;
+font-weight: 600;
+text-transform: capitalize;
+}
+.slide img{
+    height: 485px;
+}
+
+@media (max-width: 479px)
+         {
+.slide img{
+    height: auto;
+}
+}

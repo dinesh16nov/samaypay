@@ -1,0 +1,33 @@
+.nav{
+    background: #002447;
+    height: 37px;
+}
+.nav-item
+{
+    padding: 0;;
+}
+.nav-item:hover {
+    background: none
+    
+}
+.nav-link
+{
+    color: #fff;
+}
+.nav-link:hover
+{
+    color: #12447b
+}
+.social-icon
+{
+    right: 20px;
+    float: right;
+    text-align: right;
+    position: absolute;
+}
+.social-icon a
+{
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,122 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-4">
+              <div class="form-outter-sec">
+                 <div class="container">
+                    <h3>Book Gas Cylinder</h3>
+                    <form>
+
+                       <div class="form-group row">
+                         
+                          <div class="col-md-12">
+                             <div class="form-group  cus-form-check-inline">
+                                <label>Operator</label>
+                                <select2 [data]="OperatorData" class="form-control" [value]="operator"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>
+                             </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group cus-form-check-inline">
+                                 <!-- <label>Mobile Number</label> -->
+                                 <input type="text" [(ngModel)]="mobile" maxlength="10" [ngModelOptions]="{standalone: true}" (keyup)="checkOperator()"  class="form-control cus-form-control"  placeholder="Consumber Number">
+                              </div>
+                           </div>
+                          <div class="col-md-12">
+                             <div class="form-group form-check-inline cus-form-check-inline">
+                                <input type="text" class="form-control cus-form-control" placeholder="Amount" >
+                                <a href="" class="Browse-plan">  Browse Plans <br>of all operators</a>
+                             </div>
+                          </div>
+                          <div class="col-md-12">
+                             <button type="submit" class="btn btn-primary cus-recharge-btn">Proceed to Pay</button>
+                          </div>
+                       </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-8">
+               <div class="form-outter-sec">
+                     <div class="slider">
+                      <ngx-slick-carousel class="carousel" 
+                      #slickModal="slick-carousel" 
+                      [config]="slideConfig" 
+                     
+                      >
+      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+            <img src="{{ slide.resourceUrl }}" alt="" width="100%">
+      </div>
+    </ngx-slick-carousel>
+    </div>
+                     <!-- <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                           <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+                        </li>
+                     </ul>
+                     
+                     <div class="tab-content">
+                        <div class="tab-pane container active" id="home">
+                           <div class="outter-promo-sec">
+                              <ul>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="tab-pane container fade" id="menu1">...</div>
+                        <div class="tab-pane container fade" id="menu2">...</div>
+                     </div> -->
+                  </div>
+           </div>
+        </div>
+     </div>
+    </div>

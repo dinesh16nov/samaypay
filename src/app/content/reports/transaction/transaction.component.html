@@ -1,0 +1,108 @@
+
+<div class="container-box">
+<div class="header">
+Transaction
+</div>
+<div class="content">
+  <div class="search" *ngIf="IsSearchOpen">
+    <div class="row">
+<div class="header-left col-9">Search</div>
+<div class="header-right col-3"><span class="close" (click)="toggleSearch()"><i class="fa fa-times" aria-hidden="true"></i></span> </div>
+    </div>
+    <hr>
+    <form [formGroup]="SearchForm">
+        <div class="row">
+        
+          <div class="col-12 col-md-3">
+              <label>From Date</label>
+            <input type="text"  class="form-control" bsDatepicker formControlName="fromdate" [bsConfig]="FromConfig" [(ngModel)]="FromDate" (bsValueChange)="onValueChange($event)">
+          </div>
+          <div class="col-12 col-md-3">
+              <label>To Date</label>
+              <input type="text"  class="form-control" bsDatepicker formControlName="todate" [bsConfig]="ToConfig" [(ngModel)]="ToDate" >
+          </div>
+          <div class="col-12 col-md-3">
+              <span class="btn" (click)="Search()"><i class="fa fa-search" aria-hidden="true"></i> Search</span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="search-button" *ngIf="!IsSearchOpen">
+      <span class="btn" (click)="toggleSearch()"><i class="fa fa-search" aria-hidden="true"></i> Search</span>
+    </div>
+    <aditya-pageloader *ngIf="!IsReportLoaded"></aditya-pageloader>
+    <div *ngIf="!IsMobile" class="report">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Transaction#</th>
+                <th>Reference#</th>
+                <th>Account</th>
+                <th>Operator</th>
+                <th>Requested Amount</th>
+                <th>Amount</th>
+                <th>Date</th> 
+                <th>Status</th> 
+                <th>Complain</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="IsReportLoaded">
+              <tr *ngFor="let t of SearchData">
+                <td>{{t.tid}}</td>
+                <td>{{t.liveID}}</td>
+                <td>{{t.account}}</td>
+                <td>{{t.operator}}</td>
+                <td>&#x20B9; {{t.requestedAmount}}</td>
+                <td>&#x20B9; {{t.amount}}</td>
+                <td>{{t.entryDate}}</td>
+                <td>
+                  <span class="status success" *ngIf="t.type_=='SUCCESS'"><i class="fa fa-check" aria-hidden="true"></i>{{t.type_}}</span>
+                  <span class="status failed" *ngIf="t.type_=='FAILED'" ><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{t.type_}}</span>
+                  <span class="status pending" *ngIf="t.type_=='PENDING'"><i class="fa fa-clock-o" aria-hidden="true"></i>{{t.type_}}</span>
+                  <span class="status refund" *ngIf="t.type_=='REFUND'" ><i class="fa fa-undo" aria-hidden="true"></i>{{t.type_}}</span>  
+                </td>
+                  <td>
+                    <span *ngIf="t._Type==2 && t.refundStatus==1" class="complain-button" (click)="onClickComplaint(t)">
+                    <span class="btn"><i class="fa fa-gavel" aria-hidden="true"></i> Complaint</span></span>
+                    
+                    <span  *ngIf="t._Type==4" [ngClass]="{'success': true}"><strong>{{t.refundStatus_}}</strong></span>
+                    <span  *ngIf="t._Type==2 && t.refundStatus!=1" [ngClass]="{'pending':t.refundStatus_=='UNDER REVIEW','failed':t.refundStatus_=='REJECTED'}"><strong>{{t.refundStatus_}}</strong></span>
+                  </td>
+              </tr>
+             
+            </tbody>
+          </table>
+
+    </div>
+    <div class="report" *ngIf="IsMobile">
+      <div class="table" *ngIf="IsReportLoaded">
+          <div class="row" *ngFor="let t of SearchData">
+            <div class="col-9">Transaction#: <b>{{t.tid}}</b> | Reference#: <b>{{t.liveID}}</b> </div>
+            <div class="col-3"><span class="status success" *ngIf="t.type_=='SUCCESS'"><i class="fa fa-check" aria-hidden="true"></i>{{t.type_}}</span>
+              <span class="status failed" *ngIf="t.type_=='FAILED'" ><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{t.type_}}</span>
+              <span class="status pending" *ngIf="t.type_=='PENDING'"><i class="fa fa-clock-o" aria-hidden="true"></i>{{t.type_}}</span>
+              <span class="status refund" *ngIf="t.type_=='REFUND'" ><i class="fa fa-undo" aria-hidden="true"></i>{{t.type_}}</span>  </div>
+              <div class="col-9">Date:<b>{{t.entryDate}}</b> | Operator:<b>{{t.operator}}</b> </div>
+              <div class="col-3">
+                  <span *ngIf="t._Type==2 && t.refundStatus==1" class="complain-button" (click)="onClickComplaint(t)">
+                      <span class="btn"><i class="fa fa-gavel" aria-hidden="true"></i> Complaint</span></span>
+                      
+                      <span  *ngIf="t._Type==4" [ngClass]="{'success': true}"><strong>{{t.refundStatus_}}</strong></span>
+                      <span  *ngIf="t._Type==2 && t.refundStatus!=1" [ngClass]="{'pending':t.refundStatus_=='UNDER REVIEW','failed':t.refundStatus_=='REJECTED'}"><strong>{{t.refundStatus_}}</strong></span>
+              </div>
+            <div class="col-9">Account: <b>{{t.account}}</b> |   Requested Amount: <b>&#x20B9; {{t.requestedAmount}}</b></div>
+            <div class="col-3">
+              
+              </div>
+              <div class="col-9">
+                Amount: <b>&#x20B9; {{t.amount}}</b>
+               </div>
+               <div class="col-3">
+              
+              </div>
+          </div>
+         
+      </div>
+    </div>
+</div>
+</div>

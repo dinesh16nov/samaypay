@@ -1,0 +1,132 @@
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-4">
+              <div class="form-outter-sec">
+                 <div class="container">
+                    <h3>Pay Your BAR Association Fee</h3>
+                    <form [formGroup]="RechargeForm">
+
+                        <div class="form-group row">
+                          
+                           <div class="col-md-12">
+                              <div class="form-group  cus-form-check-inline">
+                                 <label>Operator</label>
+                                 <select2 [data]="OperatorData" class="form-control" [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>
+                                 <span class="errorMsg" *ngIf="operator==0 && IsRechargeSubmitted">Select Operator</span>
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                               <div class="form-group cus-form-check-inline">
+                                  <!-- <label>Mobile Number</label> -->
+                                  <input type="text"  [(ngModel)]="mobile" formControlName="mobile" [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}" class="form-control cus-form-control"  placeholder="{{MobileplaceHolder}}">
+                                  <span class="accountRemark">{{AccountRemark}}</span>
+                                  <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
+                                        <span class="errorMsg">{{spnMobile}}</span>
+                                        
+                                      </div>
+                               </div>
+                            </div>
+                           <div class="col-md-12">
+                              <div class="form-group cus-form-check-inline">
+                                  <input type="text" class="form-control cus-form-control" placeholder="Amount" [(ngModel)]="amount" formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}" >
+                                  <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
+                                    <span class="errorMsg">{{spnAmount}}</span>
+                                      
+                                    </div>
+                                 <!-- <a href="" class="Browse-plan">  Fetch Bill</a> -->
+                              </div>
+                           </div>
+                           <div class="col-md-12">
+                              <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Pay</button>
+                           </div>
+                        </div>
+                     </form>
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-8">
+               <div class="form-outter-sec">
+                     <div class="slider">
+                      <ngx-slick-carousel class="carousel" 
+                      #slickModal="slick-carousel" 
+                      [config]="slideConfig" 
+                     
+                      >
+      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+            <img src="{{ slide.resourceUrl }}" alt="" width="100%">
+      </div>
+    </ngx-slick-carousel>
+    </div>
+                     <!-- <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                           <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+                        </li>
+                     </ul>
+                     
+                     <div class="tab-content">
+                        <div class="tab-pane container active" id="home">
+                           <div class="outter-promo-sec">
+                              <ul>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                                 <li>
+                                    <h4>RECHARGEFIRST125</h4>
+                                    <span class="promocode-detail">
+                                    <span><a href="#">View detail</a></span>
+                                    </span>
+                                    <p>
+                                       <span class="promocode">Get Flat Rs.125 cashback on subscribing to Paytm First membership. Use promocode RECHARGEFIRST125.</span>
+                                    </p>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="tab-pane container fade" id="menu1">...</div>
+                        <div class="tab-pane container fade" id="menu2">...</div>
+                     </div> -->
+                  </div>
+           </div>
+        </div>
+     </div>
+    </div>

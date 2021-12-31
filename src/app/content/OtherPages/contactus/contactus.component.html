@@ -1,0 +1,84 @@
+<div class="cus-container">
+    <div class="container-fluid">
+      <div class="heading"> <i class="fa fa-address-card" aria-hidden="true"></i> Contact us</div>
+      <div class="contect">
+        <div class="">
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="contactform">
+                  <form [formGroup]="ContactForm">
+                      <div class="form-group row">
+                         <div class="col-md-12">
+                            <div class="form-group  cus-form-check-inline">
+                               <input type="text" formControlName="name" [ngClass]="{'is-invalid': register.name.errors && IsContactSubmitted}" class="form-control cus-form-control" placeholder="Name" >
+                            </div>
+                         </div>
+                         <div class="col-md-12">
+                            <div class="row">
+                              <div class="col-md-6 col-6">
+                                 <div class="form-group cus-form-check-inline">
+                                    <input type="text" formControlName="mobileNo" [ngClass]="{'is-invalid': register.mobileNo.errors && IsContactSubmitted}" class="form-control cus-form-control"  placeholder="Mobile no.">
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-6">
+                                 <div class="form-group cus-form-check-inline">
+                                     <input type="text" formControlName="EmailID" [ngClass]="{'is-invalid': register.EmailID.errors && IsContactSubmitted}" class="form-control cus-form-control"  placeholder="Email Id">
+                                 </div>
+                              </div>
+                            </div>
+                          </div>
+               
+                           <div class="col-md-12">
+                               <div class="form-group cus-form-check-inline">
+                                  <textarea formControlName="address" [ngClass]="{'is-invalid':register.address.errors && IsContactSubmitted}" class="form-control cus-form-control" rows="3" placeholder="Your Query"></textarea>
+                               </div>
+                             </div>
+                             <h5>{{ErrorMsg}}</h5>
+                             <div *ngIf="!IsContactSubmitted" class="col-md-12">
+                              <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="MakeQuery()">Make Query</button>                             
+                           </div>
+                      </div>
+                   </form>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="addressdetails">
+                <div class="contactinfo">
+                    Contact Info
+                </div>
+                <div>
+                  <div class="row">
+                    <div class="col-1">
+                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> 
+                          </span>
+                    </div>
+                    <div class="col-10">
+                        <span>{{contactAddress}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-1">
+                          <span><i class="fa fa-mobile" aria-hidden="true"></i> 
+                            </span>
+                      </div>
+                      <div class="col-10">
+                          <span>{{contactNo}}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                              </span>
+                        </div>
+                        <div class="col-10">
+                            <span>{{contactEmail}}</span>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+@import 'https://cdn.jsdelivr.net/npm/pushbar.js@1.0.0/src/pushbar.min.css';
+
+.mobileheader
+{
+
+}
+.mobileheader .btn-cus-mobile-menu
+{
+    padding: 15px;
+    display: block;
+}
+.mobileheader img
+{
+    height: 50px;
+}
+@media (max-width: 414px)
+{
+    .birthday img
+    {
+        height: 39px;
+        margin-top: 9px;
+    }
+}
+@media (max-width: 375px)
+{
+    .birthday img
+    {
+        height: 35px;
+        margin-top: 9px;
+    }
+}
+@media (max-width: 360px)
+{
+    .birthday img
+    {
+        height: 33px;
+        margin-top: 9px;
+    }
+}
+@media (max-width: 320px)
+{
+    .birthday img
+    {
+        height: 28px;
+        margin-top: 9px;
+    }
+}
+.logo img
+{
+    height: 50px;
+    /* width: 50px; */
+    margin-top: 5px;
+}
+/* .mobileimgdiv{
+    width: 40% !important;
+    text-align: center !important;
+    position:fixed !important;
+    margin-left: 50px !important;
+    
+} */

@@ -1,0 +1,35 @@
+.mob-tab-background {
+    background: #002447;
+    padding: 1.5em 0;
+    overflow-x: auto;
+}
+.container-fluid .mob-nav {
+    padding: 0px 0px;
+}
+.mob-nav-item {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.mob-cus-nav li a {
+    background: transparent;
+    color: #fff !important;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 12px;
+    
+}
+.mob-icon-img {
+    display: block;
+    margin: auto;
+    width: 28px;
+    margin-bottom: 3px;
+}
+.mob-nav-item {
+    display: block;
+    margin: 0;
+    padding: 1em 5px 0px;
+    line-height: 19px;
+}

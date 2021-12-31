@@ -1,0 +1,60 @@
+<div class="mobileheader"> 
+  <div class="row">
+    <div class="col-1">
+      <div class="toggle-btn">
+        <div class="hamburger-icon">
+            <svg class="hamburger" viewBox="0 0 100 100"  (click)="openNav()">
+                <path class="line top" d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
+                <path class="line middle" d="m 30,50 h 40" />
+                <path class="line bottom" d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
+            </svg>
+        </div>
+      </div>
+    </div>
+    <div class="col-5"><a class="logo" routerLink="/"><img src="{{Domain}}Image/Website/1/logo.png" class="img-responsive"></a></div>
+    <div class="col-5">
+        
+    </div>
+  </div>
+</div>
+
+<ul id="mobilemenu" class="omni-mobile-menu">
+  <li *ngIf="LoginDetail.IsLoggedIn">
+      <div class="profileInfo">
+          <i class="fa fa-user" aria-hidden="true"></i>
+        <div class="_1k99j">
+          <div class="name"> {{LoginDetail.LoginUserName}} </div>
+          <h5 class="balance">Your Balance &nbsp;<span class="amount">₹ {{LoginDetail.LoginUserBalance}}</span> <span class="logout" (click)="logout()">Logout</span></h5>
+        </div>
+      </div>
+  </li>
+  <li *ngIf="!LoginDetail.IsLoggedIn">
+      <div class="profileInfo">
+          <i class="fa fa-user" aria-hidden="true"></i>
+        <div class="_1k99j">
+          <div class="name"> Hello </div>
+          <h5 class="balance" (click)="goTopage('login.html')"> <span class="login">Login</span></h5>
+        </div>
+      </div>
+  </li>
+  <li *ngIf="LoginDetail.IsLoggedIn"><a (click)="goTopage('user/transaction.html')"><i style="margin-right: 5px;" class="fa fa-list"></i> My Orders</a></li>
+  <li *ngIf="LoginDetail.IsLoggedIn"><a (click)="goTopage('user/wallet.html')"><i style="margin-right: 11px;" class="fa fa-inr"></i> My Wallet</a></li>
+  <li *ngIf="LoginDetail.IsLoggedIn"><a (click)="goTopage('user/profile.html')"><i style="margin-right: 9px;" class="fa fa-user"></i> My Profile</a></li>
+  <li *ngIf="LoginDetail.IsLoggedIn"><a (click)="goTopage('/user/membershipUpdate.html')"><i style="margin-right: 9px;" class="fa fa-users" ></i>Update MemberShip</a></li>
+  
+  <li>
+      <a class="omni-dropdown-toggle"><i class="fa fa-mobile" aria-hidden="true" style="margin-right: 9px;"></i> Recharge & Bill Payments</a>
+      <ul class="omni-dropdown-menu" *ngIf="isMenuLoaded">
+          <li  *ngFor="let m of menus.assignedOpTypes; let i=index" [id]="'menu-'+ m.serviceID" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a (click)="getRouteName(m.serviceID)">
+                <img src="../../assets/img/icon-black/{{m.serviceID}}.png" class="mob-icon-img">
+              {{m.name}}</a>
+          </li>          
+      </ul>
+  </li>
+  <li><a (click)="goTopage('aboutus.html')">About Us</a></li>
+  <li><a (click)="goTopage('termsconditions.html')">Terms & Conditions</a></li>
+  <li><a (click)="goTopage('help.html')">24x7 Help</a></li>
+  <li><a (click)="goTopage('contactus.html')">Contact Us</a></li>
+</ul><!-- omni-mobile-menu -->
+

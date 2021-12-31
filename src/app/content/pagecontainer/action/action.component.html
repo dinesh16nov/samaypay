@@ -1,0 +1,113 @@
+
+<div class="cus-container">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+           <div class="col-md-12">
+              <aditya-pageloader *ngIf="IsTran"></aditya-pageloader>
+              <div class="action">
+
+                  <div class="header">confirmation</div>
+                  <div class="content">
+                    <div class="col-12">
+                      <div class="row border-bottom">
+                        <div class="col-2"><img src="{{hostDomain}}Image/operator/{{request.oid}}.png"></div>
+                        <div class="col-10"><span>
+                            Operator
+                          </span>
+                          <div class="text">{{operatorName}}</div>
+                        </div>
+                      </div>
+                      <div class="row  mt-2">
+                          <div class="col-md-2"></div>
+                          <div class="col-md-10">
+                            <div class="row">
+                              <div class="col-6"><span>{{AccountName}}</span></div>
+                              <div class="col-6 text">{{request.accountNo}}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row  mt-2 border-bottom pb-2">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-6"><span>{{OperatorType}}</span></div>
+                                    <div class="col-6 text">{{request.amount}}/-</div>
+                                  </div>
+                             
+                            </div>
+                          </div>
+                          <div class="row  mt-2 border-bottom pb-2  text-success">
+                              <div class="col-md-2"></div>
+                              <div class="col-md-10">
+                                <div class="row">
+                                   <div class="col-6"><img style="width: 15px;margin-right: 5px;" src="https://icons-for-free.com/iconfiles/png/512/wallet+icon-1320190636366256884.png"><span>Wallet Balance</span></div>
+                                  <div class="col-6 text">{{walletBalance}}/-</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="AmountToPay>0"class="row  mt-2 border-bottom pb-2 text-danger cus-text">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-6"><span>Amount to Pay </span></div>
+                                        <div class="col-6 text">{{AmountToPay}}/- </div>
+                                      </div>
+                                 
+                                </div>
+                              </div>
+                    </div>
+                    <div class="error-container" *ngIf="errorMsg">
+                        <i class="fa fa-exclamation-triangle"></i>
+  
+                      <span class="error"> Payment Failed  -  {{errorMsg}}</span>
+                      </div>
+                  </div>
+                  <div class="footer">
+                      <a  class="btn payment-btn cus-recharge-btn" (click)="proceedTotransaction()">Confirm payment </a>
+                  </div>
+                </div>
+              <div class="form-outter-sec row">
+                  
+                 <!-- <div class="container col-md-8">
+                    <div class="row">
+                      <div class="col-md-6">
+                         <div class="wallet-img">
+                           <img src="https://icons-for-free.com/iconfiles/png/512/wallet+icon-1320190636366256884.png" />
+                           <h5>Wallet Balance : {{walletBalance}}/-</h5>
+                         </div>
+                         
+                      </div>
+                      <div class="col-md-6">
+                        <div class="wallet-balance">
+                          <h3>Your exiting wallet balance is <span>{{walletBalance}}/-</span> </h3>
+                          <h4>You are about to pay <span>Rs {{request.amount}}/-</span></h4>
+                          <a class="btn payment-btn cus-recharge-btn" (click)="proceedTotransaction()">Confirm payment</a>
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="detail-sec">
+                                <table class="table table-borderless">
+                                  <thead>
+                                    <th><img src="http://roundpay.net/Image/operator/{{request.oid}}.png"></th>
+                                    <th>Operator <br>{{operatorName}}</th>
+                                    <th>{{AccountName}} <br>{{request.accountNo}}</th>
+                                    <th>{{OperatorType}} <br>{{request.amount}}/-</th>
+                                  </thead>
+                                </table>                         
+                              </div>
+                        </div>
+                    </div>
+                    <div class="error-container" *ngIf="errorMsg">
+                      <i class="fa fa-exclamation-triangle"></i>
+
+                    <span class="error"> Payment Failed  -  {{errorMsg}}</span>
+                    </div>
+
+                 </div> -->
+                
+              </div>
+           </div>
+          
+        </div>
+     </div>
+    </div>

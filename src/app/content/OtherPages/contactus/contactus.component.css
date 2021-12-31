@@ -1,0 +1,89 @@
+.cus-container {
+    margin: 0;
+    
+}
+.container
+{
+    background: #fff;
+    box-shadow: 1px 1px 15px -10px #000;
+    margin-top: 50px;
+    padding-top: 4em;
+}
+.heading
+{
+    
+    font-size: 24px;
+    margin: 15px 45px;
+    
+    padding: 20px 40px;
+    background: #fff;
+    border-radius: 4px;
+    color: #002447;
+    box-shadow: 0px 9px 10px -8px #ccc;
+    
+}
+.heading i
+{
+
+}
+.contect
+{
+    margin: 15px 45px;
+    border-radius: 4px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 9px 10px -8px #ccc;
+}
+.contactform
+{
+    padding: 40px;
+    margin-right: 20px
+}
+.addressdetails
+{
+    background: #002447;
+    min-height: 100%;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    padding: 20px 40px;
+}
+.addressdetails .contactinfo
+{
+    padding: 20px;
+    font-size: 18px;
+}
+.addressdetails  .row{
+    margin-bottom: 25px;
+}
+.addressdetails  .row i{
+    
+}
+.form-outter-sec {
+     background: inherit;
+     margin-top: 0px; 
+     box-shadow: none;
+}
+
+.cus-content
+{
+    width: 100%;
+}
+.cus-recharge-btn
+{
+    margin: 0 ;
+}
+
+@media (max-width: 414px)
+{
+    .contect, .heading
+    {
+        margin: 0;
+        border-bottom: 1px solid #ccc;
+    }
+    .contactform
+    {
+        padding: 20px;
+        margin-right: 35px;
+    }
+    
+}

@@ -1,0 +1,116 @@
+<aditya-pageloader *ngIf="IsLoading"></aditya-pageloader>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-md cus-navbar-dark">
+     <!-- Brand -->
+     <a class="navbar-brand logo" routerLink="/"><img src="{{Domain}}Image/Website/1/logo.png"></a>
+     <!-- Toggler/collapsibe Button -->
+     <div class="desktopimgdiv">
+     <!-- <img src="../../assets/img/cus-img/birth.gif" id="birthdayImg"> -->
+    </div>
+     <!-- Navbar links -->
+     <div *ngIf="!LoginDetail.IsLoggedIn" style="font-size: 15px;position: absolute;right: 10px;cursor: pointer;">
+        <i aria-hidden="true" class="fa fa-user"></i>
+     <a  (click)="gotoLogin()"> Login</a> / 
+     <a  (click)="gotosignup()"> SignUp</a>
+    </div>
+     <div class="mini-cart text-right" *ngIf="LoginDetail.IsLoggedIn" >
+       <h4 class="welcome-sec"><span>Welcome </span>{{LoginDetail.LoginUserName}} </h4>|
+       <h4 class="welcome-sec">Wallet : ₹{{LoginDetail.LoginUserBalance}}<a  title="Refresh Wallet Balance"><i aria-hidden="true" class="{{gettingBalanceSpinClass}}" style="font-size: 15px;color: #607D8B;" (click)="getWalletbalance()"></i></a></h4>
+        <div class="btn-group" dropdown>
+            <a id="button-animated" dropdownToggle class="btn-cus-mobile-menu"><i class="fa fa-bars" style="color: #002447;font-size: 30px;"></i></a>
+            <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu mobile-dropdown-menu"
+                role="menu" aria-labelledby="button-animated">
+                <li><a class="dropdown-item"routerLink="/user/transaction.html"><div><i class="fa fa-list" aria-hidden="true"></i></div>Transactions</a></li>
+                <li><a class="dropdown-item"routerLink="/user/wallet.html"><div><i class="fa fa-inr" aria-hidden="true"></i></div>Wallet</a></li>
+                <li><a class="dropdown-item" routerLink="/user/profile.html"><div><i class="fa fa-user" aria-hidden="true"></i></div>Profile</a></li>  
+                <li><a class="dropdown-item" routerLink="/user/membershipUpdate.html"><div><i class="fa fa-user" aria-hidden="true"></i></div>Update MemberShip</a></li>                
+                <li><a class="dropdown-item" (click)="logout()"><div><i class="fa fa-sign-out" aria-hidden="true"></i></div>Logout</a></li>
+            </ul>
+          </div>
+        <ul>
+            <!-- <li><a routerLink="/myprofile/wishlist"><i class="icon_heart_alt"></i></a></li> -->
+            
+         
+            
+        </ul>
+    </div>
+     
+  </nav>
+</div>
+
+<ng-template #modelSignIn>
+   
+    <div class="modal-body">
+        <button type="button" class="close" (click)="LoginPopUp.hide()"> <span aria-hidden="true">&times;</span> </button>
+        <tabset>
+            <tab heading="Login" id="tab1">
+              <br>
+                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                    <form  [formGroup]="LoginForm">
+                      <div class="form-group">
+                        <input type="email" class="form-control cus-form-control" formControlName="UserID" id="loginMobile" [ngClass]="{'is-invalid':l.UserID.errors && IsLoginSubmitted}" placeholder="Mobile or Email ID">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control cus-form-control" formControlName="Password" id="loginPassword" [ngClass]="{'is-invalid':l.Password.errors && IsLoginSubmitted}" placeholder="Password">
+                      </div>
+                      <div class="row mb-4">
+                        <div class="col-sm">
+                          <div class="form-check custom-control custom-checkbox">
+                            <input id="remember-me" name="remember" class="custom-control-input" type="checkbox">
+                            <label class="custom-control-label" for="remember-me">Remember Me</label>
+                          </div>
+                        </div>
+                        <div class="col-sm text-right"> <a class="justify-content-end" (click)="login()">Forgot Password ?</a> </div>
+                      </div>
+                      <button class="btn btn-primary btn-block" (click)="login()">Login</button>
+                    </form>
+                  </div>
+
+            </tab>
+            <tab heading="Sign Up">
+                <br>
+                <div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                    <form id="signupForm"  [formGroup]="SignUpForm">
+                      <div class="form-group">
+                        <input type="text" class="form-control cus-form-control" formControlName="name"  [ngClass]="{'is-invalid':s.name.errors && IsSignUpSubmitted}"  placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control cus-form-control" formControlName="EmailID" [ngClass]="{'is-invalid':s.EmailID.errors && IsSignUpSubmitted}"   placeholder="EmailID">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control cus-form-control" formControlName="mobileNo" [ngClass]="{'is-invalid':s.mobileNo.errors && IsSignUpSubmitted}"  placeholder="MobileNo">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':s.password.errors && IsSignUpSubmitted}"   placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control" formControlName="pincode"  [ngClass]="{'is-invalid':s.pincode.errors && IsSignUpSubmitted}"  placeholder="pincode">
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" formControlName="address" [ngClass]="{'is-invalid':s.address.errors && IsSignUpSubmitted}"   placeholder="Address">
+                            </div>
+                      <button class="btn btn-primary btn-block" type="submit" (click)="signUP()">Signup</button>
+                    </form>
+                  </div>
+            </tab>
+            
+          </tabset>
+       
+        <div class="tab-content pt-4">
+          
+          <div class="d-flex align-items-center my-4">
+            <hr class="flex-grow-1">
+            <span class="mx-2">OR</span>
+            <hr class="flex-grow-1">
+          </div>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <button type="button" class="btn btn-block btn-outline-primary">Login with Facebook</button>
+            </div>
+            <div class="col-12">
+              <button type="button" class="btn btn-block btn-outline-danger">Login with Google</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </ng-template>
