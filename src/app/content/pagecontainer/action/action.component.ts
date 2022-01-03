@@ -5,13 +5,16 @@ import { ApisessionService } from '../../../services/apisession.service'
 import { TransactionReq } from '../../../enums/apiRequest'
 import { Router } from '@angular/router';
 import { TransectionResp } from 'src/app/enums/apiResponse';
+import { ViewChild } from '@angular/core';
+import { AddmoneyComponent } from '../../addmoney/addmoney.component';
 @Component({
   selector: 'aditya-action',
   templateUrl: './action.component.html',
   styleUrls: ['./action.component.css']
 })
 export class ActionComponent implements OnInit {
-  hostDomain :string="";
+  hostDomain: string = "";
+  
   request:TransactionReq={
     accountNo:0,
     amount:0,
@@ -24,17 +27,19 @@ export class ActionComponent implements OnInit {
     oid:0,
     refID:''
   };
+  Confirmpayment = true;
   response:TransectionResp;
   operatorName=''
   walletBalance=0;
   errorMsg='';
-  AccountName='';
+  AccountName = '';
+  IsRechargeReq :number= 0;
   OperatorType='Bill Amount';
   IsTran=true;
-  AmountToPay=0;
+  AmountToPay: number=0;
   constructor(private apiData:ApidataService,
     public router:Router,
-    private apiSession:ApisessionService) { }
+    private apiSession: ApisessionService) { }
 
   ngOnInit() {
     this.hostDomain=APIUrl.Domain;
@@ -43,6 +48,7 @@ export class ActionComponent implements OnInit {
 
   getData()
   {
+    debugger;
     if(!this.apiData.getSessionData(SessionVar.TransactionRequest))
     {
       this.apiData.gotoMenu('prepaid.html')
@@ -65,7 +71,17 @@ export class ActionComponent implements OnInit {
           this.walletBalance=resp.data.balance;
           if(this.request.amount>this.walletBalance)
           {
-            this.AmountToPay=this.request.amount-this.walletBalance;
+            this.AmountToPay = parseFloat((this.request.amount - this.walletBalance).toFixed(3));
+            if (this.request.amount > this.walletBalance) {
+              this.Confirmpayment = false;
+              this.IsRechargeReq = 1;
+              document.getElementById("btnTemo").click();
+              
+              this.IsTran = false;
+             
+              return false;
+
+            }
           }
           else{
             this.AmountToPay=0;
@@ -77,12 +93,17 @@ export class ActionComponent implements OnInit {
   }
   proceedTotransaction()
   {
-    this.IsTran=true;
+    this.IsTran = true;
     this.apiSession.Transaction(this.request).subscribe(resp=>{
       this.response=resp;
       if(this.response.statuscode==RespTranCode.Success || this.response.statuscode==RespTranCode.Pending)
       {
         this.apiData.setSessionData(SessionVar.TransactionResponse,this.response);
+        this.router.navigate(['paymentsuccess.html']);
+      }
+      else if (this.response.statuscode == RespTranCode.Refund)
+      {
+        this.apiData.setSessionData(SessionVar.TransactionResponse, this.response);
         this.router.navigate(['paymentsuccess.html']);
       }
       else

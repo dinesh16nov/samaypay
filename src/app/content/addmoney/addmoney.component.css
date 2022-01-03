@@ -1,130 +1,201 @@
-.btn
-{
-    margin-top: 10px;
-    padding: 5px;
-    border: 1px solid #e4e9ec;
-    border-radius: 5px;
-    color: #002447;
-    background-color: #fff;
-    border-color: #002447;
+.btn {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #e4e9ec;
+  border-radius: 5px;
+  color: #002447;
+  background-color: #fff;
+  border-color: #002447;
 }
-.addmoney-button
-{
-    text-align: center;
+
+.addmoney-button {
+  text-align: center;
 }
-.addmoney-button span
-{
+
+  .addmoney-button span {
     color: #fff;
     background-color: #002447;
     border-color: #002447;
     width: 100%;
-}
-.addmoney-button span:hover
-{
-    color: #002447;
-    background-color: #fff;
-    border-color: #002447;
-}
+  }
 
-.modal-title{
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
+    .addmoney-button span:hover {
+      color: #002447;
+      background-color: #fff;
+      border-color: #002447;
+    }
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .wallet-img {
-    display: inline-flex;
+  display: inline-flex;
 }
-.wallet-img img{
+
+  .wallet-img img {
     width: 55px;
     height: 50px;
-}
-.wallet-img h4 {
+  }
+
+  .wallet-img h4 {
     font-size: 18px;
-    padding: 7px;
+    padding: 0 10px;
+    margin-bottom: 0;
+  }
+
+    .wallet-img h4 span {
+      font-size: 12px;
+    }
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 12px;
 }
-.wallet-img h4 span {
-    font-size: 12px;
-    
+.addmoney-form {
+  margin: 10px 0;
 }
-.addmoney-form
-{
-    margin: 10px 0;
-    
-}
-.addmoney-form input{
+
+  .addmoney-form input {
     font-size: 18px;
-}
-.addmoney-li{
-    list-style-type:none;
-    font-size: x-large;
-    vertical-align: middle;
-    margin-bottom: 5px;
-    cursor: pointer;
-}
-.addmoney-charge{
-    color:red !important;
-font-size: small !important;
+  }
 
+.addmoney-li {
+  list-style-type: none;
+  font-size: x-large;
+  vertical-align: middle;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
-.addmoney-ul{
+
+.addmoney-charge {
+  color: #ffffff !important;
+  font-size: 11px;
+  margin-left: 25px;
+  line-height: 0;
+  background: #b92020;
+  padding: 8px;
+  width: fit-content;
+  border-radius: 8px;
+  margin-bottom: 7px;
+}
+
+.addmoney-ul {
+  padding-left: 0%;
+}
+
+/*
+.custom_radio {
+  margin: 20px;
+}*/
+
+  .custom_radio ul {
+    list-style-type: none;
     padding-left: 0%;
+  }
+
+    .custom_radio ul label {
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+  .custom_radio input[type="radio"] {
+    display: none;
+  }
+
+    .custom_radio input[type="radio"] + label {
+      position: relative;
+      display: inline-block;
+      padding-left: 2em;
+      margin-right: 2em;
+      cursor: pointer;
+      line-height: 1em;
+      transition: all 0.3s ease-in-out;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+      .custom_radio input[type="radio"] + label:before,
+      .custom_radio input[type="radio"] + label:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        color: white;
+        font-family: Times;
+        border-radius: 50%;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+      }
+
+      .custom_radio input[type="radio"] + label:before {
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        box-shadow: inset 0 0 0 0.2em white, inset 0 0 0 1em white;
+      }
+
+      .custom_radio input[type="radio"] + label:hover:before {
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        box-shadow: inset 0 0 0 0.3em white, inset 0 0 0 1em #c6c6c6;
+      }
+
+    .custom_radio input[type="radio"]:checked + label:before {
+      -webkit-transition: all .3s ease;
+      transition: all .3s ease;
+      box-shadow: inset 0 0 0 0.2em white, inset 0 0 0 1em #4CAF50;
+    }
+
+.custom_radio {
+  background: #efefef;
+  padding: 10px;
+  border-radius: 8px;
 }
 
+.cus-credit img {
+  width: 20px;
+}
 
-.custom_radio{
-    margin: 20px;
-    
- }
- .custom_radio ul{
-    list-style-type:none;
-    padding-left: 0%;
- }
- .custom_radio ul label{
-     font-size:20px;
-     text-transform: uppercase;
- }
- .custom_radio input[type="radio"]{
-   display: none;
- }
- .custom_radio input[type="radio"] + label{
-   position: relative;
-   display: inline-block;
-   padding-left: 1.5em;
-   margin-right: 2em;
-   cursor: pointer;
-   line-height: 1em;
-   -webkit-transition: all 0.3s ease-in-out;
-   transition: all 0.3s ease-in-out;
- }
- .custom_radio input[type="radio"] + label:before,
- .custom_radio input[type="radio"] + label:after{
-   content: '';
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 1em;
-   height: 1em;
-   text-align: center;
-   color: white;
-   font-family: Times;
-   border-radius: 50%;
-   -webkit-transition: all .3s ease;
-   transition: all .3s ease;
- }
- .custom_radio input[type="radio"] + label:before {
-   -webkit-transition: all .3s ease;
-   transition: all .3s ease;
-   box-shadow: inset 0 0 0 0.2em white, inset 0 0 0 1em white;
- }
- .custom_radio input[type="radio"] + label:hover:before {
-   -webkit-transition: all .3s ease;
-   transition: all .3s ease;
-   box-shadow: inset 0 0 0 0.3em white, inset 0 0 0 1em #c6c6c6;
- }
- .custom_radio input[type="radio"]:checked + label:before {
-   -webkit-transition: all .3s ease;
-   transition: all .3s ease;
-   box-shadow: inset 0 0 0 0.2em white, inset 0 0 0 1em #4CAF50;
- }
+.addmoney-button .cus-text {
+  background-color: inherit !important;
+  color: black;
+}
+
+.cus-fa {
+  font-size: 31px;
+  color: #0a7fd7;
+}
+
+.form-control:not(.form-control-sm) {
+  padding: 5px !important;
+}
+
+.addmoney-form[_ngcontent-sok-c9] input[_ngcontent-sok-c9] {
+  font-size: 15px !important;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 

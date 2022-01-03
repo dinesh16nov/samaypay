@@ -67,11 +67,14 @@ export enum APIUrl
     CheckNumberSeries="CheckNumberSeries",
     CheckIsLookUpFromAPI="CheckIsLookUpFromAPI",
     GetBanner="GetBanner",
-    ForgetPassword="ForgetPassword",
+  ForgetPassword = "ForgetPassword",
+  GetPaymentMode = 'GetPaymentMode',
+
     // Domain='http://localhost:44338/',
     Domain='http://admin.samaypay.in/',
-    BaseURL='http://admin.samaypay.in/WebApp/'
-    // BaseURL='http://localhost:44338/WebApp/'
+   BaseURL='http://admin.samaypay.in/WebApp/'
+  //Domain = 'https://admin.prechargepay.in/',
+  // BaseURL ='http://localhost:44343/WebApp/'
 
 }
 export enum HeaderInfo{

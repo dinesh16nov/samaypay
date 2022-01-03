@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable, of, from} from 'rxjs';
 import { APIUrl,HeaderInfo } from '../enums/emums';
 import { FetchBillReq,TransactionReq, RechargeReportReq, LedgerReportReq, RefundRequestReq,PGWebRequestModel, PGStatusCheckRequestModel, CommonWeRequest } from '../enums/apiRequest';
-import {  BalanceResp,CouponDetail,PGInitiatePGResponse, TransectionResp, WebAppUserProfileResp, WebMemberTypeModel} from '../enums/apiResponse';
+import {  BalanceResp,CouponDetail,NumberListResp,PGInitiatePGResponse, TransectionResp, WebAppUserProfileResp, WebMemberTypeModel} from '../enums/apiResponse';
 import { AuthService } from './auth.service'
 
 @Injectable({
@@ -117,6 +117,13 @@ export class ApisessionService {
     var httpOptions = {headers: new HttpHeaders({ 'appID':HeaderInfo.AppID,'version':HeaderInfo.Version,'domain':HeaderInfo.Domain,'userID':this.auth.getUserID(),'sessionID':this.auth.getSessionID(),'session':this.auth.getSession() })};
     return this.http.post<any>(APIUrl.BaseURL + APIUrl.RefundRequest,req, httpOptions).pipe(
       catchError(this.handleError<any>('RefundRequest'))
+    );
+  }
+
+  GetPaymentMode(): Observable<NumberListResp> {
+    var httpOptions = { headers: new HttpHeaders({ 'appID': HeaderInfo.AppID, 'version': HeaderInfo.Version, 'domain': HeaderInfo.Domain, 'userID': this.auth.getUserID(), 'sessionID': this.auth.getSessionID(), 'session': this.auth.getSession() }) };
+    return this.http.post<NumberListResp>(APIUrl.BaseURL + APIUrl.GetPaymentMode, 1, httpOptions).pipe(
+      catchError(this.handleError<NumberListResp>('GetPaymentMode'))
     );
   }
 }

@@ -56,7 +56,7 @@ export class MenusComponent implements OnInit {
         if(resp.statuscode==1)
         {
           localStorage.setItem(SessionVar.OperatorList,JSON.stringify(resp.data.assignedOpTypes))
-          this.menus=resp.data.assignedOpTypes;
+          this.menus=resp.data;
           this.displayMenu();
         }
       });

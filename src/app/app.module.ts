@@ -63,6 +63,7 @@ import { HospitalComponent } from './content/pagecontainer/hospital/hospital.com
 import { EducationFessComponent } from './content/pagecontainer/educationFess/educationFess.component';
 import { ClubsAndAssociationComponent } from './content/pagecontainer/clubsAndAssociation/clubsAndAssociation.component';
 import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociationFee/barAssociationFee.component';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,7 +130,10 @@ import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociati
     BsDropdownModule.forRoot(),
     HttpClientModule,
     Select2Module,
-    SlickCarouselModule    
+    SlickCarouselModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    
   ],
   providers: [CookieService,{provide:LocationStrategy,useClass:HashLocationStrategy},Title],
   bootstrap: [AppComponent]

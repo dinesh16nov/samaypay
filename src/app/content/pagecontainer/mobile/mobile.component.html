@@ -7,49 +7,73 @@
                       <h3>Prepaid Mobile Recharge</h3>
                       <form [formGroup]="RechargeForm">
 
-                         <div class="form-group row">
-                           <div class="col-md-12">
-                              <div class="form-group  cus-form-check-inline">
-                                 <label >Operator</label>
-                                 <select2 [data]="OperatorData" class="form-control"  [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>
-                                 <span class="errorMsg" *ngIf="(operator==0 && IsRechargeSubmitted)">Select Operator</span>
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <div class="form-group cus-form-check-inline">
+                              <label class="pl-3">Operator</label>
+                              <!--<select2 [data]="OperatorData" class="form-control d-none" [value]="operator" (valueChanged)="Operatorchanged($event)" dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>-->
+
+                              <mat-form-field class="example-full-width">
+                                <input type="text" placeholder="" matInput formControlName="myControl" [matAutocomplete]="auto"> <!--[formControl]="myControl"-->
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                  <mat-option (onSelectionChange)="Operatorchangednew(option.id)" *ngFor="let option of filteredOperator | async" [value]="option">
+                                   <!--<img [src]="transform('{{option.additional.image}}')"/> {{option.text}}-->
+                                   <img [src]="transform(option.additional.image)"/> {{option.text}}
+                                  </mat-option>
+                                </mat-autocomplete>
+                              </mat-form-field>
+                              <span class="errorMsg" *ngIf="(operator==0 && IsRechargeSubmitted)">Select Operator</span>
+                            </div>
+                          </div>
+                          <!--Auto complete-->
+
+
+                          <div class="col-md-12">
+                            <div class="form-group cus-form-check-inline">
+                              <!-- <label>Mobile Number</label> -->
+                              <input type="phone" class="form-control cus-form-control" formControlName="mobile" [(ngModel)]="mobile" maxlength="odata?(odata.lengthMax==0?odata.length:odata.lengthMax):10" minlength="odata?odata.length:10" [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}" (keyup)="checkOperator()" placeholder="Mobile Number">
+                              <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
+                                <span class="errorMsg">{{spnmobile}}</span>
+                                <!-- <span class="errorMsg" *ngIf="r.mobile.errors.minlength || r.mobile.errors.maxlength">Mobile Number must be 10 digits long</span>
+        <span class="errorMsg" *ngIf="r.mobile.errors.pattern && odata.isAccountNumeric">Invalid Mobile No.</span> -->
+
                               </div>
-                           </div>
-                            <div class="col-md-12">
-                               <div class="form-group cus-form-check-inline">
-                                  <!-- <label>Mobile Number</label> -->
-                                  <input type="phone" class="form-control cus-form-control" formControlName="mobile"  [(ngModel)]="mobile" maxlength="odata?(odata.lengthMax==0?odata.length:odata.lengthMax):10" minlength="odata?odata.length:10"  [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}" (keyup)="checkOperator()"  placeholder="Mobile Number">
-                                  <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
-                                    <span class="errorMsg">{{spnmobile}}</span>
-                                       <!-- <span class="errorMsg" *ngIf="r.mobile.errors.minlength || r.mobile.errors.maxlength">Mobile Number must be 10 digits long</span>
-                                       <span class="errorMsg" *ngIf="r.mobile.errors.pattern && odata.isAccountNumeric">Invalid Mobile No.</span> -->
-                                       
-                                     </div>
-                               </div>
                             </div>
-                           
-                            <div class="col-md-12">
-                               <div class="form-group  cus-form-check-inline">
-                                  <label>Circle</label>
-                                  <select2 [data]="CircleData" class="form-control " [value]="circle" (valueChanged)="Circlechanged($event)"   dropdownPosition="bottom" [cssImport]=true [options]="CircleOptions"></select2>
-                                  <span class="errorMsg" *ngIf="circle==0 && IsRechargeSubmitted">Select Circle</span>
-                               </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group  cus-form-check-inline">
+                              <label class="pl-3">Circle</label>
+                              <!--<select2 [data]="CircleData" class="form-control d-none" [value]="circle" (valueChanged)="Circlechanged($event)" dropdownPosition="bottom" [cssImport]=true [options]="CircleOptions"></select2>-->
+                              <mat-form-field class="example-full-width">
+                                <input type="text" placeholder="" matInput formControlName="myControlCircle" [matAutocomplete]="auto1"> <!--[formControl]="myControl"-->
+                                <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFnCircle">
+                                  <mat-option (onSelectionChange)="Circlechangednew(option1.id)" *ngFor="let option1 of filteredCircle | async" [value]="option1">
+                                    {{option1.text}}
+                                  </mat-option>
+                                </mat-autocomplete>
+                              </mat-form-field>
+                              <span class="errorMsg" *ngIf="circle==0 && IsRechargeSubmitted">Select Circle</span>
                             </div>
-                            <div class="col-md-12">
-                               <div class="form-group form-check-inline cus-form-check-inline">
-                                  <input type="text" class="form-control cus-form-control" formControlName="amount" [(ngModel)]="amount"  [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}"  placeholder="Amount">
-                                  <a (click)="browseSimplePlan()" class="Browse-plan">  Browse Plans <br>of all operators</a>
-                               </div>
+                          </div>
+                          <!--Auto complete-->
+                          
+
+                          <div class="col-md-12">
+                            <div class="form-group form-check-inline cus-form-check-inline">
+                              <input type="text" class="form-control cus-form-control" formControlName="amount" [(ngModel)]="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}" placeholder="Amount">
+                              <a (click)="browseSimplePlan()" class="Browse-plan">  Browse Plans <br>of all operators</a>
                             </div>
-                            <div class="col-md-12">
-                              <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
-                                 <span class="errorMsg">{{spnamount}}</span>
-                               </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div *ngIf="(r.amount.errors && IsRechargeSubmitted)||!amount">
+                              <span class="errorMsg">{{spnamount}}</span>
                             </div>
-                            <div class="col-md-12">
-                               <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Recharge</button>
-                            </div>
-                         </div>
+                          </div>
+                          <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary cus-recharge-btn" (click)="proceedToAction()">Proceed to Recharge</button>
+                          </div>
+                        </div>
                       </form>
                    </div>
                 </div>

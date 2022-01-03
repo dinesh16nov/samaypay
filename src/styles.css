@@ -310,3 +310,91 @@ select2
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem .5rem;
+  clear: both;
+  font-size: 12px;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.dropdown-menu {
+  min-width: 13rem;
+}
+
+
+/**************for autocomplete**********************/
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0.81rem 0.96rem;
+}
+
+.mat-form-field-infix {
+  width: 100% !important;
+}
+
+.mat-form-field-flex {
+  display: inline-flex;
+  align-items: baseline;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid #000 !important;
+}
+
+.mat-autocomplete-panel .mat-option.mat-selected:not(.mat-active):not(:hover) {
+  background: #f3f3f3;
+}
+
+.mat-badge-content {
+  color: #fff;
+  background: #c2185b
+}
+
+.mat-autocomplete-panel {
+  background: #fff;
+  color: #424242
+}
+
+.mat-option-text {
+  display: inline-block;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+  vertical-align: middle;
+}
+
+.mat-form-field {
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.125;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  width: 100%;
+}
+
+.mat-form-field-infix {
+  padding: 0.5em 0;
+  border-top: 0em solid transparent;
+}
+
+.mat-option-text img {
+  width: 30px;
+  margin-right: 15px;
+}
+
+.mat-option {
+  border-bottom: 1px solid #e1e1e1; /*
+  border-top: 1px solid #e1e1e1;*/
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: #000 !important;
+}
+

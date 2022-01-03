@@ -20,21 +20,23 @@
 }
 :host >>> .tab-section .nav-link
 {
-    padding: 5px;
+    padding: 5px 10px;
 }
 :host >>> .tab-section .nav-tabs 
 {
     padding: 5px 0 0;
-    background-color: #0d6ab4;
+    background-color: #002447;
 }
-:host >>> .tab-section .nav-tabs .nav-item .nav-link.active{
-  
-   color: white;
-}
+  :host >>> .tab-section .nav-tabs .nav-item .nav-link.active {
+    color: #002447;
+    background: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 :host >>> .tab-section .tab-container>.tab-content>#tabheader>.tab-container>ul
 {
     padding: 5px 0 0;
-    background-color: #c5faf5;
+    background-color: #0d6ab4;
 }
 :host >>> .tab-section .tab-container>.tab-content>#tabheader>.tab-container>.nav-tabs .nav-item .nav-link.active
 {
@@ -42,7 +44,7 @@
 }
 .table .button
 {
-    border: 1px solid #002447;
+    border: 1px solid #fff;
     background: #fff;
     color: #002447;
     font-size: 14px;
@@ -152,3 +154,5 @@ img{
     height: auto;
 }
 }
+
+

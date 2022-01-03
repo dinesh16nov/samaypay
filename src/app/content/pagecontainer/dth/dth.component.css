@@ -33,14 +33,21 @@
 {
     width: 183px;
 }
-.Customer-Detail{
-    right: 0;
-    padding: 0 20px 0 0;
-    font-size: 12px;
-    text-transform: capitalize;
-    color: #929292;
-    cursor: pointer;
+.Customer-Detail {
+  right: 23px;
+  /* padding: 0 20px 0 0; */
+  font-size: 12px;
+  /* text-transform: capitalize; */
+  color: #929292;
+  cursor: pointer;
+  background: #f7f7f7;
+  /* text-align: center; */
+  position: absolute;
 }
+  .Customer-Detail i {
+    font-size: 14px;
+    cursor:pointer;
+  }
 .table .button
 {
     border: 1px solid #002447;
@@ -68,9 +75,45 @@
     background-color: #e6eded;
     border-top:0px;
 }
-.btnMore{
-    background-color: teal;
-    color: white;
-    border: 1px  #0d6ab4;
-    border-radius: 4px;
+.btnMore {
+  background-color: teal;
+  color: white;
+  border: 1px #0d6ab4;
+  border-radius: 4px;
+  position: relative;
+  left: 116px;
 }
+.cus-user-list {
+  position: absolute;
+  left: 298px;
+  top: 13px;
+}
+.cus-user-menu {
+  position: absolute;
+  left: 286px!important;
+  
+}
+.table td, .table th {
+  padding: 0.2rem!important;
+ 
+}
+.form-outter-sec-info {
+  height: auto!important;
+  
+}
+label, input {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+  input:placeholder-shown + label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0, 2.125rem) scale(1.5);
+  }
+
+
+

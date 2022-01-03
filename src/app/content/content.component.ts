@@ -44,7 +44,7 @@ export class ContentComponent implements OnInit {
     }
     else
     {
-      this.apiServices.GetNumberList().subscribe(resp=>{
+      this.apiServices.GetNumberList().subscribe(resp => {
         this.BaseData=resp;
         if(this.BaseData!=undefined){
           if(this.BaseData.statuscode==RespCode.Success)
