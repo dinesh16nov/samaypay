@@ -41,7 +41,7 @@
                     <input type="phone" [(ngModel)]="mobile" formControlName="mobile" [ngClass]="{'is-invalid':(r.mobile.errors && IsRechargeSubmitted)||(!mobile && r.mobile.touched)}" class="form-control cus-form-control" placeholder="{{MobileplaceHolder}}" (keyup)="GetDTHPlans()">
                     <a (click)="dthSimplePlanInfo()" class="Customer-Detail input-group-append cus-user-list">
 
-                    <i class="input-group-text" title="Customer Details">User Detail</i>
+                    User Detail
                     </a>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                   <div class="form-check-inline cus-form-check-inline">
                     <input type="text" class="form-control cus-form-control " placeholder="Amount" [(ngModel)]="amount" formControlName="amount" [ngClass]="{'is-invalid':(r.amount.errors && IsRechargeSubmitted)||(!amount && r.amount.touched)}">
                     <!--<a (click)="dthInfo()" class="Browse-plan">  Browse Plans <br>of all operators</a>-->
-                    <a (click)="dthInfo()" class="Customer-Detail input-group-append cus-user-list cus-user-menu"><i class="input-group-text" title="Browse Plan">Browse Plan</i></a>
+                    <a (click)="dthInfo()" class="Customer-Detail input-group-append cus-user-list cus-user-menu">Browse Plan</a>
                     
                     <!--<a (click)="dthInfo()" class="Browse-plan">  Browse Plans <br>of all operators</a>
       <a (click)="dthSimplePlanInfo()" class="Customer-Detail">  Customer<br>Detail</a>-->

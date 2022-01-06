@@ -1,26 +1,31 @@
-import { Component, OnInit, TemplateRef,Renderer2,Inject, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import {DOCUMENT} from '@angular/common';
+import { Component, OnInit, TemplateRef, Renderer2, Inject, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { ApidataService } from 'src/app/services/apidata.service';
-import { BsModalRef, BsModalService  } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BalanceResp, PGInitiatePGResponse, TransectionResp } from 'src/app/enums/apiResponse';
 import { ApiService } from 'src/app/services/apiservices.service';
 import { ApisessionService } from 'src/app/services/apisession.service';
-import { RespCode,SessionVar,APIUrl,HeaderInfo, PGType, RespTranCode} from 'src/app/enums/emums';
+import { RespCode, SessionVar, APIUrl, HeaderInfo, PGType, RespTranCode } from 'src/app/enums/emums';
 import { NumberListResp, OpTypeResp } from 'src/app/enums/apiResponse';
-import { FormGroup,FormBuilder,Validators} from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { FormValidationService } from 'src/app/services/form-validation.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service'
 import { PGStatusCheckRequestModel, PGWebRequestModel, TransactionReq } from 'src/app/enums/apiRequest';
 import { ActionComponent } from '../pagecontainer/action/action.component';
+import { TimerComponent } from 'src/app/content/timer/timer.component';
+
 
 @Component({
   selector: 'aditya-addmoney',
   templateUrl: './addmoney.component.html',
-  styleUrls: ['./addmoney.component.css']
+
+  styleUrls: ['./addmoney.component.css'],
+
 })
 
 export class AddmoneyComponent implements OnInit {
+
   IsPaymentButtonShow = false;
   IsVPA: Boolean = false;
   PaymodeID: number = 0;
@@ -59,17 +64,20 @@ export class AddmoneyComponent implements OnInit {
   @Input() amount: number = 0;
   @Input() IsRechargeReq: number = 0;
   @Output() actionEvent = new EventEmitter();
+  stratimerc: number = 0;
   vpa: string = '';
   TID: number = 0;
+
   PGStatus: number = 0;
   IsErrorInValidation: boolean = false;
   ErrorMsg: string = '';
+  public myWindow: Window;
   constructor(private apiData: ApidataService, private router: Router,
     private modalService: BsModalService,
     private apiSession: ApisessionService, private fb: FormBuilder,
     private FormValidation: FormValidationService,
     private auth: AuthService, private _rend2: Renderer2
-    , @Inject(DOCUMENT) private _document: Document) {
+    , @Inject(DOCUMENT) private _document: Document, private timer: TimerComponent) {
 
 
   }
@@ -104,7 +112,9 @@ export class AddmoneyComponent implements OnInit {
     this.changeAmountCharged();
   }
   changeAmountCharged() {
-
+    if (this.amount < 1) {
+      this.amount = 0;
+    }
     if (this.amount > 0)
       this.AmountCharged = (this.amount + (this.amount * this.ChargedPer / 100)).toFixed(2);
     else
@@ -122,6 +132,9 @@ export class AddmoneyComponent implements OnInit {
           if (this.IsRechargeReq == 1) {
             this.PGStatus = 4;
             this.Startrecharge();
+          }
+          else {
+            this.reloadWindow();
           }
         }
       }
@@ -146,13 +159,23 @@ export class AddmoneyComponent implements OnInit {
     this.addMoneyView = this.modalService.show(template, this.config);
     this.addMoneyView.setClass('addmoney-popup modal-sm');
   }
-
+  closeQuickVIewPopup() {
+    this.addMoneyView.hide();
+    if (this.PGStatus == 3) {
+      this.myWindow.close();
+      window.location.reload();
+    } else {
+      this.TID = 0;
+      this.PGStatus = 0;
+    }
+  }
+  callchild() {
+    this.timer.startimer();
+  }
 
   proceedToPay() {
-   
-    
+    this.stratimerc = 1
     console.log(this.request1);
-   
     this.IsErrorInValidation = false;
     this.IsPaymentButtonShow = false;
     if (this.amount < 1 || this.amount > 1000) {
@@ -196,20 +219,24 @@ export class AddmoneyComponent implements OnInit {
     });
   }
   GettingLastStatusOfPayment() {
- 
     this.PaymodeID = 0;
     let _this = this;
     let _st = setInterval(function () {
       var ReqPGStatus: PGStatusCheckRequestModel = {
         OrderID: _this.TID
       }
+      if (_this.TID == 0) {
+        clearInterval(_st);
+        return;
+      }
       _this.apiSession.CheckPGStatus(ReqPGStatus).subscribe((resp: PGInitiatePGResponse) => {
+        console.log(resp);
         if (resp.statuscode == 1) {
+          console.log(resp);
           if (resp.status == 2) {
             _this.PGStatus = 2;
             clearInterval(_st);
             _this.getWalletbalance();
-
             setTimeout(function () {
               _this.TID = 0;
             }, 2000);
@@ -221,6 +248,7 @@ export class AddmoneyComponent implements OnInit {
             clearInterval(_st);
             setTimeout(function () {
               _this.TID = 0;
+
             }, 2000);
           } else {
             _this.PGStatus = 1;
@@ -237,7 +265,7 @@ export class AddmoneyComponent implements OnInit {
     }, 10 * 1000);
   }
   DrawPaytmJS(PTMBaseURL, MID, token, orderid, amount, PayMode) {
-   
+
     let scriptBody = this._rend2.createElement('script');
     scriptBody.text = `function onScriptLoad() {
       let payTMJSconfig = {
@@ -410,22 +438,32 @@ export class AddmoneyComponent implements OnInit {
     setTimeout(function () {
       _this.GettingLastStatusOfPayment();
     }, 1 * 60 * 1000);
-    var myWindow = window.open("/", "_blank", "width=900,height=650");
-    myWindow.document.write(stxt);
-    
-   
+    this.myWindow = window.open("/", "_blank", "width=900,height=650");
+    this.myWindow.document.write(stxt);
+    this.myWindow.addEventListener("beforeunload", function (e) {
+      _this.GettingLastStatusOfPayment();
+    }, false);
+
+
   }
 
   Startrecharge() {
-     if (this.IsRechargeReq == 1)
+    if (this.IsRechargeReq == 1)
       this.request1 = this.apiData.getSessionData(SessionVar.TransactionRequest);
-    if (this.IsRechargeReq == 1 && this.balance >= this.request1.amount)
-    {
+    if (this.IsRechargeReq == 1 && this.balance >= this.request1.amount) {
+      this.addMoneyView.hide();
+      this.TID = 0;
+      this.PGStatus = 0;
       this.actionEvent.emit();
     }
   }
+  reloadWindow() {
+    this.PGStatus = 3;
 
-  
+    // this.myWindow.close();
+    //window.location.reload();
+  }
+
 }
 
 

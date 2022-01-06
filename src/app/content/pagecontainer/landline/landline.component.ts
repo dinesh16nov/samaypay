@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
 import { Select2TemplateFunction } from 'ng2-select2';
 import { ApidataService } from 'src/app/services/apidata.service';
@@ -9,12 +9,18 @@ import { TransactionReq } from 'src/app/enums/apiRequest';
 import { OpTypes, SessionVar } from 'src/app/enums/emums';
 import { ApiService } from 'src/app/services/apiservices.service';
 import { FormValidationService } from 'src/app/services/form-validation.service';
+import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 
 @Component({
   selector: 'aditya-landline',
   templateUrl: './landline.component.html',
   styleUrls: ['./landline.component.css']
+})
+@Pipe({
+  name: 'safe'
 })
 export class LandlineComponent implements OnInit {
   RechargeForm:FormGroup;
@@ -23,8 +29,9 @@ export class LandlineComponent implements OnInit {
   MobileplaceHolder='Select Landline Operator'
   AccountRemark=''
   odata:any;
-  public operator:0;
+  public operator:number;
   public OperatorData: Array<Select2OptionData>;
+  public filteredOperator: Observable<Array<Select2OptionData>>;
   public OperatorOptions: Select2Options;
   IsRechargeSubmitted=false;
   // slides = [
@@ -38,7 +45,7 @@ export class LandlineComponent implements OnInit {
   spnMobile='';
   spnAmount='';
   constructor(private apiData:ApidataService,private router:Router,private authService:AuthService,
-    private fb:FormBuilder,private apiService:ApiService,private FormValidation:FormValidationService) { }
+    private fb: FormBuilder, private apiService: ApiService, private FormValidation: FormValidationService, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.OperatorOptions= {
@@ -50,12 +57,28 @@ export class LandlineComponent implements OnInit {
     };
     this.RechargeForm=this.fb.group({
       mobile:this.fb.control('',[Validators.required]),
-      
+      myControl: this.fb.control(''),
       amount:this.fb.control('',[Validators.required])
     })
       
       this.OperatorData=this.apiData.getOperator(this.apiData.getRouteID(this.router.url.replace('/','').replace('.html','')));
-      this.GetB2CBanner();
+    this.GetB2CBanner();
+    this.filteredOperator = this.RechargeForm.controls['myControl'].valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterOperator(value))
+      );
+  }
+
+  private _filterOperator(object: any): Array<Select2OptionData> {
+    let value = typeof (object) === 'object' ? object.text : object;
+    if (value != null && value != "") {
+      var filterValue = value.toLowerCase();
+      var data = this.OperatorData.filter(operator => operator.text.toLowerCase().includes(filterValue))
+      return data;
+    }
+    else
+      return this.OperatorData;
   }
   get r(){ return this.RechargeForm.controls}
   public templateResult: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
@@ -208,5 +231,43 @@ export class LandlineComponent implements OnInit {
       
     }
     })
+  }
+
+  public displayFn(data?: Select2OptionData): string {
+    return data ? data.text : '';
+  }
+
+  Operatorchangednew(event: any): void {
+
+    this.operator = parseInt(event.option.value.id);
+    if (this.operator == 0) {
+      this.MobileplaceHolder = 'Select Landline Operator';
+      return;
+    }
+    console.log(this.operator)
+    this.odata = this.apiData.getOperatorData(this.operator);
+    console.log(this.odata)
+    this.MobileplaceHolder = this.odata.accountName;
+    this.AccountRemark = this.odata.accountRemak;
+    if (this.odata.isAccountNumeric)
+      this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax), Validators.pattern('\\d{6}')]);
+    else
+      this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax)]);
+    this.RechargeForm.controls['amount'].setValidators([Validators.min(this.odata.min), Validators.max(this.odata.max), Validators.pattern('^[0-9]+(\.?[0-9]?)')]);
+    this.IsRechargeSubmitted = false;
+  }
+  transform(value: string, type?: string): SafeHtml | SafeUrl | SafeResourceUrl {
+    console.log(value);
+    return this._sanitizer.bypassSecurityTrustUrl(value);
+
+  }
+
+  inputclear(a = 0) {
+    debugger
+    if (a == 0) {
+      this.operator = 0;
+      this.RechargeForm.controls['myControl'].setValue(' ');
+    }
+   
   }
 }

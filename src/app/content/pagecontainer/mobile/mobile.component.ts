@@ -486,9 +486,9 @@ export class MobileComponent implements OnInit,  PipeTransform {
     return data ? data.text : '';
   }
 
-  Operatorchangednew(oId: string): void{
-    console.log('Operatorchangednew' + oId);
-    this.operator = parseInt(oId);
+  Operatorchangednew(event: any): void {
+    debugger
+    this.operator = parseInt(event.option.value.id);
     this.odata = this.apiData.getOperatorData(this.operator);
     if (this.odata.isAccountNumeric)
       this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax == 0 ? this.odata.length : this.odata.lengthMax), Validators.pattern('\\d{10}')]);
@@ -507,11 +507,22 @@ export class MobileComponent implements OnInit,  PipeTransform {
     return data ? data.text : '';
   }
 
-  Circlechangednew(oId: string): void {
-    this.circle = parseInt(oId);
+  Circlechangednew(event: any): void {
+    this.circle = parseInt(event.option.value.oid);
     if (this.operator > 0)
       this.browseSimplePlan()
   }
+  inputclear(a = 0) {
+    debugger
+    if (a == 0) {
+      this.operator = 0;
+      this.RechargeForm.controls['myControl'].setValue(' ');
+    }
+    else {
+      this.circle = 0;
+      this.RechargeForm.controls['myControlCircle'].setValue(' ');
 
+    }
+  }
  
 }

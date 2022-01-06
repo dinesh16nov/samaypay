@@ -1,0 +1,60 @@
+.timer {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.4em;
+  letter-spacing: -1px;
+}
+
+  .timer span {
+    font-size: 19px;
+    margin: 0 17px 0 17px;
+    color:#fff;
+  }
+.timer {
+  width: 121px;
+  padding: 1px;
+  height: 60px;
+  display: block;
+  margin: auto;
+  border-radius: 6px;
+  background: #1d61a3;
+}
+
+.timer {
+  
+  border: 1px solid red;
+  position: relative;
+  animation-name: example;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes example {
+  0% {
+    border: 1px solid green;
+  }
+
+  25% {
+    border: 1px solid black;
+  }
+
+  50% {
+    border: 1px solid yellow;
+  }
+
+  75% {
+    border: 1px solid grey;
+  }
+
+  100% {
+    border: 1px solid purple;
+  }
+}
+
+
+
+
+

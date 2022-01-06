@@ -63,6 +63,7 @@ import { HospitalComponent } from './content/pagecontainer/hospital/hospital.com
 import { EducationFessComponent } from './content/pagecontainer/educationFess/educationFess.component';
 import { ClubsAndAssociationComponent } from './content/pagecontainer/clubsAndAssociation/clubsAndAssociation.component';
 import { BarAssociationFeeComponent } from './content/pagecontainer/barAssociationFee/barAssociationFee.component';
+import { TimerComponent } from './content/timer/timer.component';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     TermsconditionsComponent,
     MobileheaderComponent,
     DesktopheaderComponent,
-    MembershipUpdateComponent
+    MembershipUpdateComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,

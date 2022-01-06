@@ -15,7 +15,7 @@
     </div>
      <div class="mini-cart text-right" *ngIf="LoginDetail.IsLoggedIn" >
        <h4 class="welcome-sec"><span>Welcome </span>{{LoginDetail.LoginUserName}} </h4>|
-       <h4 class="welcome-sec">Wallet : ₹{{LoginDetail.LoginUserBalance}}<a  title="Refresh Wallet Balance"><i aria-hidden="true" class="{{gettingBalanceSpinClass}}" style="font-size: 15px;color: #607D8B;" (click)="getWalletbalance()"></i></a></h4>
+       <h4 class="welcome-sec">Wallet : ₹{{LoginDetail.LoginUserBalance}} <a  title="Refresh Wallet Balance"><i aria-hidden="true" class="{{gettingBalanceSpinClass}}" style="font-size: 15px;color: #607D8B;" (click)="getWalletbalance()"></i></a></h4>
         <div class="btn-group" dropdown>
             <a id="button-animated" dropdownToggle class="btn-cus-mobile-menu"><i class="fa fa-bars" style="color: #002447;font-size: 30px;"></i></a>
             <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu mobile-dropdown-menu"

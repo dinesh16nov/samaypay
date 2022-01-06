@@ -4,12 +4,9 @@
 
 
 <ng-template #AddMoneyPopup>
-
-
-
   <div class="modal-header">
     <h4 class="modal-title pull-left title"><i class="fa fa-plus" aria-hidden="true"></i> Add Money to Wallet</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="addMoneyView.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeQuickVIewPopup()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -35,12 +32,12 @@
             <label>Choose Payment Option</label>
             <ul>
               <li *ngFor="let op of Paymentoperators">
-                <div class="row">
+                <div class="row" (click)="radioCheckedChange(op.oid,op.charge)">
                   <div class="col-md-2">
                     <img src="{{Domain}}/Image/operator/{{op.oid}}.png" style="width: 37px;">
                   </div>
                   <div class="col-md-10">
-                    <input type="radio" name="RDOopList" id="rdo{{op.oid}}" (change)="radioCheckedChange(op.oid,op.charge)" />
+                    <input type="radio" name="RDOopList" id="rdo{{op.oid}}" [checked]="op.oid==PaymodeID" />
                     <label for="rdo{{op.oid}}"> {{op.name}}</label>
                     <p class="addmoney-charge">Charges:{{op.charge}}%</p>
                   </div>
@@ -48,10 +45,11 @@
               </li>
             </ul>
             <!--<div *ngIf="IsVPA==true">
-              <input type="text" class="form-control" placeholder="Enter UPI ID" formControlName="vpa" [(ngModel)]="vpa" />
-            </div>-->
+          <input type="text" class="form-control" placeholder="Enter UPI ID" formControlName="vpa" [(ngModel)]="vpa" />
+        </div>-->
 
           </div>
+
 
 
 
@@ -61,13 +59,19 @@
           </div>
         </form>
       </div>
-        <div *ngIf="PGStatus==1" ><img src="./assets/img/loader.gif" style="width: 75px; display: block; margin: auto; padding: 10px;"/></div>
-        <div *ngIf="TID>0">
-          <span *ngIf="PGStatus==1" style=" position: relative; left: 29px;">Waiting for gateway confirmation...</span>
-          <span *ngIf="PGStatus==2">Wallet updated Successful</span>
-          <span *ngIf="PGStatus==3">Payment Failed</span>
-          <span *ngIf="PGStatus==4">Recharge Initiated..</span>
-        </div>
+      <app-count-down *ngIf="PGStatus==1 && TID>0" [stratimerp]="[stratimerc]"  (reloadWin)="reloadWindow()"></app-count-down>
+      <div *ngIf="PGStatus==1"><img src="./assets/img/loader.gif" style="width: 75px; display: block; margin: auto; padding: 10px;" /></div>
+      <div *ngIf="TID>0">
+        <span *ngIf="PGStatus==1" style=" position: relative; left: 29px;">Waiting for gateway confirmation...</span>
+        <span *ngIf="PGStatus==2">Wallet updated Successful</span>
+        <!--<span *ngIf="PGStatus==3">Payment Failed</span>-->
+        <div *ngIf="PGStatus==3"><img src="./assets/img/failed.gif" style="width: 75px; display: block; margin: auto; padding: 10px;" /></div>
+        <span *ngIf="PGStatus==3" style=" position: relative; text-align:justify;">
+          Your Order {{TID}}  for Amount {{AmountCharged}} is awaited from Bank Side
+          We will Update once get Response From Bank Side.
+        </span>
+        <span *ngIf="PGStatus==4">Recharge Initiated..</span>
+      </div>
 
     </div>
   </div>

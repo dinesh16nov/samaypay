@@ -10,11 +10,21 @@
                        <div class="form-group row">
                          
                           <div class="col-md-12">
-                             <div class="form-group  cus-form-check-inline">
-                                <label>Operator</label>
-                                <select2 [data]="OperatorData" class="form-control" [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>
-                                <span class="errorMsg" *ngIf="operator==0 && IsRechargeSubmitted">Select Operator</span>
-                             </div>
+                            <div class="form-group  cus-form-check-inline">
+                              <label>Operator</label>
+                              <!--<select2 [data]="OperatorData" class="form-control" [value]="operator"  (valueChanged)="Operatorchanged($event)"  dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>-->
+                              <mat-form-field class="example-full-width">
+                                <input type="text" placeholder="" matInput formControlName="myControl" [matAutocomplete]="auto">
+                                <a (click)="inputclear(0)" class="Browse-plan">  <i class="fa fa-times"></i> </a><!--[formControl]="myControl"-->
+                                <mat-autocomplete (optionSelected)="Operatorchangednew($event)" #auto="matAutocomplete" [displayWith]="displayFn">
+                                  <mat-option  *ngFor="let option of filteredOperator | async" [value]="option">
+                                    <!--<img [src]="transform('{{option.additional.image}}')"/> {{option.text}}-->
+                                    <img [src]="transform(option.additional.image)" /> {{option.text}}
+                                  </mat-option>
+                                </mat-autocomplete>
+                              </mat-form-field>
+                              <span class="errorMsg" *ngIf="operator==0 && IsRechargeSubmitted">Select Operator</span>
+                            </div>
                           </div>
                           <div class="col-md-12">
                               <div class="form-group cus-form-check-inline">

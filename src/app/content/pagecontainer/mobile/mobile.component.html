@@ -14,11 +14,12 @@
                               <!--<select2 [data]="OperatorData" class="form-control d-none" [value]="operator" (valueChanged)="Operatorchanged($event)" dropdownPosition="bottom" [cssImport]=true [options]="OperatorOptions"></select2>-->
 
                               <mat-form-field class="example-full-width">
-                                <input type="text" placeholder="" matInput formControlName="myControl" [matAutocomplete]="auto"> <!--[formControl]="myControl"-->
-                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                                  <mat-option (onSelectionChange)="Operatorchangednew(option.id)" *ngFor="let option of filteredOperator | async" [value]="option">
-                                   <!--<img [src]="transform('{{option.additional.image}}')"/> {{option.text}}-->
-                                   <img [src]="transform(option.additional.image)"/> {{option.text}}
+                                <input type="text" placeholder="" matInput formControlName="myControl" [matAutocomplete]="auto">
+                                <a (click)="inputclear(0)" class="Browse-plan">  <i class="fa fa-times"></i> </a><!--[formControl]="myControl"-->
+                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="Operatorchangednew($event)" [displayWith]="displayFn">
+                                  <mat-option *ngFor="let option of filteredOperator | async" [value]="option">
+                                    <!--<img [src]="transform('{{option.additional.image}}')"/> {{option.text}}-->
+                                    <img [src]="transform(option.additional.image)" /> {{option.text}}
                                   </mat-option>
                                 </mat-autocomplete>
                               </mat-form-field>
@@ -35,7 +36,7 @@
                               <div *ngIf="(r.mobile.errors && IsRechargeSubmitted)||!mobile">
                                 <span class="errorMsg">{{spnmobile}}</span>
                                 <!-- <span class="errorMsg" *ngIf="r.mobile.errors.minlength || r.mobile.errors.maxlength">Mobile Number must be 10 digits long</span>
-        <span class="errorMsg" *ngIf="r.mobile.errors.pattern && odata.isAccountNumeric">Invalid Mobile No.</span> -->
+                                <span class="errorMsg" *ngIf="r.mobile.errors.pattern && odata.isAccountNumeric">Invalid Mobile No.</span> -->
 
                               </div>
                             </div>
@@ -46,9 +47,10 @@
                               <label class="pl-3">Circle</label>
                               <!--<select2 [data]="CircleData" class="form-control d-none" [value]="circle" (valueChanged)="Circlechanged($event)" dropdownPosition="bottom" [cssImport]=true [options]="CircleOptions"></select2>-->
                               <mat-form-field class="example-full-width">
-                                <input type="text" placeholder="" matInput formControlName="myControlCircle" [matAutocomplete]="auto1"> <!--[formControl]="myControl"-->
-                                <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFnCircle">
-                                  <mat-option (onSelectionChange)="Circlechangednew(option1.id)" *ngFor="let option1 of filteredCircle | async" [value]="option1">
+                                <input type="text" placeholder="" matInput formControlName="myControlCircle" [matAutocomplete]="auto1">
+                                <a (click)="inputclear(1)" class="Browse-plan">  <i class="fa fa-times"></i> </a><!--[formControl]="myControl"-->
+                                <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="Circlechangednew($event)" [displayWith]="displayFnCircle">
+                                  <mat-option *ngFor="let option1 of filteredCircle | async" [value]="option1">
                                     {{option1.text}}
                                   </mat-option>
                                 </mat-autocomplete>

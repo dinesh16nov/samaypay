@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
 import { Select2TemplateFunction } from 'ng2-select2';
 import { ApidataService } from 'src/app/services/apidata.service';
@@ -9,9 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TransactionReq } from 'src/app/enums/apiRequest';
 import { OpTypes, SessionVar } from 'src/app/enums/emums';
 import { FormValidationService } from 'src/app/services/form-validation.service';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 
-
+@Pipe({
+  name: 'safe'
+})
 @Component({
   selector: 'aditya-postpaid',
   templateUrl: './postpaid.component.html',
@@ -28,6 +33,8 @@ export class PostpaidComponent implements OnInit {
   public OperatorData: Array<Select2OptionData>;
   public OperatorOptions:Select2Options;
   public CircleData: Array<Select2OptionData>;
+  public filteredOperator: Observable<Array<Select2OptionData>>;
+  public filteredCircle: Observable<Array<Select2OptionData>>;
   public CircleOptions:Select2Options={
     multiple: false,
     closeOnSelect: true,
@@ -52,7 +59,7 @@ export class PostpaidComponent implements OnInit {
     private router:Router, 
     private apiService:ApiService, 
     private authService:AuthService,
-    private fb:FormBuilder, private FormValidation:FormValidationService) { }
+    private fb: FormBuilder, private FormValidation: FormValidationService, protected _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     //this.apiService.test().subscribe(resp=>{console.log(resp)});
@@ -66,12 +73,49 @@ export class PostpaidComponent implements OnInit {
     this.RechargeForm=this.fb.group({
       mobile:this.fb.control('',[Validators.required, Validators.maxLength(10), Validators.minLength(10),Validators.pattern('\\d{10}')]),
       
-      amount:this.fb.control('',[Validators.required])
+      amount: this.fb.control('', [Validators.required]),
+      myControl: this.fb.control(''),
+      myControlCircle: this.fb.control('')
     })
+    
       this.CircleData=this.apiData.getCircles();
       this.OperatorData=this.apiData.getOperator(this.apiData.getRouteID(this.router.url.replace('/','').replace('.html','')));
-      this.GetB2CBanner();
+    this.GetB2CBanner();
 
+    this.filteredOperator = this.RechargeForm.controls['myControl'].valueChanges
+            .pipe(
+        startWith(''),
+        map(value => this._filterOperator(value))
+    );
+
+    this.filteredCircle = this.RechargeForm.controls['myControlCircle'].valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filterCircle(value))
+      );
+
+  }
+
+  private _filterCircle(object: any): Array<Select2OptionData> {
+    let value = typeof (object) === 'object' ? object.text : object;
+    if (value != null && value != "") {
+      var filterValue = value.toLowerCase();
+      var data = this.CircleData.filter(Circle => Circle.text.toLowerCase().includes(filterValue))
+      return data;
+    }
+    else
+      return this.CircleData;
+  }
+
+  private _filterOperator(object: any): Array<Select2OptionData> {
+    let value = typeof (object) === 'object' ? object.text : object;
+    if (value != null && value != "") {
+      var filterValue = value.toLowerCase();
+      var data = this.OperatorData.filter(operator => operator.text.toLowerCase().includes(filterValue))
+      return data;
+    }
+    else
+      return this.OperatorData;
   }
   get r(){ return this.RechargeForm.controls}
 // function for result template
@@ -105,33 +149,33 @@ public templateSelection: Select2TemplateFunction = (state: Select2OptionData): 
   return jQuery('<span class="search-ddl"></b> ' + image + ' <span>' + state.text + '</span></span>');
 }
   
-public 
-Operatorchanged(e: any): void {
-  this.operator = e.value;
-  if(this.operator==0)
-  {
-    this.MobileplaceHolder='Select Operator';
-    return;
-  }
-  //console.log(this.operator)
-  this.odata=this.apiData.getOperatorData(this.operator);
-  this.IsBBPS=this.odata.isBBPS;
-  this.IsBilling=this.odata.isBilling;
-  this.MobileplaceHolder=this.odata.accountName;
-  this.AccountRemark=this.odata.accountRemak;
-  if(this.odata.isAccountNumeric)
-  this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax),Validators.pattern('\\d{10}')]);
-  else
-  this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax)]);
-  this.RechargeForm.controls['amount'].setValidators([Validators.min(this.odata.min), Validators.max(this.odata.max),Validators.pattern('^[0-9]+(\.?[0-9]?)')]);
-  this.IsRechargeSubmitted=false;
-  //
+ 
+//public Operatorchanged(e: any): void {
+//  this.operator = e.value;
+//  if(this.operator==0)
+//  {
+//    this.MobileplaceHolder='Select Operator';
+//    return;
+//  }
+//  //console.log(this.operator)
+//  this.odata=this.apiData.getOperatorData(this.operator);
+//  this.IsBBPS=this.odata.isBBPS;
+//  this.IsBilling=this.odata.isBilling;
+//  this.MobileplaceHolder=this.odata.accountName;
+//  this.AccountRemark=this.odata.accountRemak;
+//  if(this.odata.isAccountNumeric)
+//  this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax),Validators.pattern('\\d{10}')]);
+//  else
+//  this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax)]);
+//  this.RechargeForm.controls['amount'].setValidators([Validators.min(this.odata.min), Validators.max(this.odata.max),Validators.pattern('^[0-9]+(\.?[0-9]?)')]);
+//  this.IsRechargeSubmitted=false;
+//  //
   
-}
-public Circlechanged(e: any): void {
-  this.circle = e.value;
+//}
+//public Circlechanged(e: any): void {
+//  this.circle = e.value;
   
-}
+//}
 
 checkOperator()
   {
@@ -253,5 +297,58 @@ checkOperator()
       
     }
     })
+  }
+
+  public displayFn(data?: Select2OptionData): string {
+    return data ? data.text : '';
+  }
+
+
+  Operatorchangednew(event: any): void {
+  
+    this.operator = parseInt(event.option.value.id);
+    if (this.operator == 0) {
+      this.MobileplaceHolder = 'Select Operator';
+      return;
+    }
+    this.odata = this.apiData.getOperatorData(this.operator);
+    this.IsBBPS = this.odata.isBBPS;
+    this.IsBilling = this.odata.isBilling;
+    this.MobileplaceHolder = this.odata.accountName;
+    this.AccountRemark = this.odata.accountRemak;
+    if (this.odata.isAccountNumeric)
+      this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax), Validators.pattern('\\d{10}')]);
+    else
+      this.RechargeForm.controls['mobile'].setValidators([Validators.minLength(this.odata.length), Validators.maxLength(this.odata.lengthMax)]);
+    this.RechargeForm.controls['amount'].setValidators([Validators.min(this.odata.min), Validators.max(this.odata.max), Validators.pattern('^[0-9]+(\.?[0-9]?)')]);
+    this.IsRechargeSubmitted = false;
+   
+  }
+  transform(value: string, type?: string): SafeHtml | SafeUrl | SafeResourceUrl {
+    console.log(value);
+    return this._sanitizer.bypassSecurityTrustUrl(value);
+
+  }
+
+  public displayFnCircle(data?: Select2OptionData): string {
+    return data ? data.text : '';
+  }
+
+  Circlechangednew(event: any): void {
+    this.circle = parseInt(event.option.value.oid);
+    
+  }
+
+  inputclear(a = 0) {
+    debugger
+    if (a == 0) {
+      this.operator = 0;
+      this.RechargeForm.controls['myControl'].setValue(' ');
+    }
+    else {
+      this.circle = 0;
+      this.RechargeForm.controls['myControlCircle'].setValue(' ');
+
+    }
   }
 }
